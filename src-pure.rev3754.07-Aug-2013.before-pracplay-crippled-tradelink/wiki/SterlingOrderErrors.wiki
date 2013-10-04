@@ -1,0 +1,39 @@
+#summary If Sterling orders are not showing up
+
+If you are not seeing orders
+ # Check your Sterling Server window for errors.
+
+Error 'Invalid Account'
+ # right click the sterling connector (sterserver) window 
+ # choose account
+ # type your account name and choose ok
+ # resend your order
+
+This will be your default account.   You can always override it:
+ *  by setting the account property in a specific program (eg asp/quotopia options)
+ * by setting the 'account' property on an individual order when programming
+
+Error 'StiAccessDenied' can occur because :
+ * sending order with a destination not permissed for your account
+ * sending order with price that is too low (sub-penny)
+ * sending stop orders on sterling demo account (stops only supported on live)
+ * other possible reason for this error :
+{{{
+"Symbol blocked from trading"
+"Wash trades not allowed"
+"Acct disabled"
+"Acct enabled for closing and canceling only"
+"SSHRT EXEMPT NOT ALLOWED"
+"Odd Lot Rule"
+"Mixed Lot Rule"
+"Software license expired. System not accepting orders."
+"Trading region not authorized for destination."
+"Too early for Equity orders"
+"Equity order cutoff time has passed. System not accepting Equity orders"
+"Sub-Penny Rule"
+"GTC cancel/replace not supported"
+"IMPOSSIBLE TO BORROW"
+}}}
+
+Error 'Invalid Destination'
+ * your destination/exchange is invalid

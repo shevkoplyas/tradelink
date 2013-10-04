@@ -1,0 +1,9 @@
+#summary enabling extended api logging
+
+Set the log level setting to “Detail” and then replicate the problem again:
+
+ # In TWS,
+ #        Navigate to Configure menu then API, select “All API Setting…”
+ #          Logging Level set to “Detail”
+ #        Replicate the problem again and send the log file to us
+ #        The log file is located within C:\JTS directory and it is named log.day.txt.

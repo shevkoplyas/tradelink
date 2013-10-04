@@ -1,0 +1,6 @@
+#summary Nanex NxCore feed
+
+You must have a valid NxCore account and have the software installed.
+
+To use:
+ # Simply start the connector.  start->programs->tradelink->NxCore

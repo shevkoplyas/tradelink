@@ -1,0 +1,63 @@
+#summary SendOrder
+
+Command to send order in tradelink.   Markets, Stops, Limits, Trailing stops are supported.
+
+BASIC EXAMPLES
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  IdTracker idt = new IdTracker();
+public override void Reset()
+{
+   idt = new IdTracker(ID);
+// buy 200 shares of ibm
+sendorder(new MarketOrder("IBM",200));
+// sell 300 shares of GOOG
+sendorder(new MarketOrder("GOOG",-300));
+// send limit order
+sendorder(new BuyLimit("IBM",200,150));
+// stop
+sendorder(new BuyStop("IBM",200,150));
+// sell limit order with user defined order id
+sendorder(new LimitOrder("IBM",-200,150,idt.AssignId));
+}
+}
+}}}
+
+CHANGING DEFAULT SENORDER BEHAVIOR
+
+You may want to change default behavior, eg :
+ * to always set particular destinations for orders
+ * to always assign an order id
+ * to keep track of orders which have been sent
+ * etc
+
+{{{
+
+public class MyResponse : ResponseTemplate
+{
+  IdTracker idt = new IdTracker();
+public override void Reset()
+{
+   idt = new IdTracker(ID);
+// buy 200 shares of ibm
+sendorder(new MarketOrder("IBM",200));
+}
+
+List<long> sentids = new List<long>();
+public override void sendorder(Order o)
+{
+    // override destination if none present
+    if (o.ex==string.Empty)
+        o.ex = "NYMEX";
+   // ensure order has an id 
+   if (o.id==0)
+       o.id = idt.AssignId;
+   // ensure we don't forget this order came from us
+   if (!sentids.Contains(o.id))
+       sentids.Add(o.id);
+   base.sendorder(o);
+}
+}
+}}}

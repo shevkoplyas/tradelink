@@ -1,0 +1,16 @@
+#summary tradelink with redi
+
+You must have redi installed.
+
+Steps
+ # install tradelink
+ # start redi and login
+ # start tradelink redi connector start->programs->tradelink->redi
+ # Acryonym is your 4XXX
+ # Account is 4 digit sub account (eg 1209 for bright)
+ # enter login information and click login
+
+
+Test
+ # open quotopia and try to request a quote
+ # if you have problems, click the unhappy face button in redi and submit a bug report

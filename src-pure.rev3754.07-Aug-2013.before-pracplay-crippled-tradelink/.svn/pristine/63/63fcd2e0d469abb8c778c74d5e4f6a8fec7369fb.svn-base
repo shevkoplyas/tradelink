@@ -1,0 +1,104 @@
+#summary See what's included
+
+[TradeLink Quick Starts] 
+|  [TradeLinkFaq Questions] 
+
+
+Applications :
+<wiki:toc max_depth="2" />
+
+== Broker Connectors ==
+
+Connect any of the suite's programs to a [http://brokers.tradelink.org variety of brokers.]
+
+Features :
+ * All brokers support sending and canceling orders
+ * All brokers (save DBfx) support level1 quote and last sale.
+ * Level2 depth of market is supported for selected brokers
+
+== Asp == 
+
+Automated strategy trading.  
+
+Benefits :
+ * [ResponseDocs Build black or grey box applications from provided examples]
+ * Trade same strategy across many brokers
+ * Switch brokers without changing code.
+ * Records ticks for analysis and playback
+
+Click screenshot for a recorded demo.
+
+[http://tradelink.googlecode.com/files/ASP1374.jpg]
+
+== Quotopia ==
+
+Quotes and order entry.  (click image for demo)
+
+http://tradelink.googlecode.com/files/Quotopia1374.jpg
+
+
+== Gauntlet ==
+
+Strategy Testing :
+
+Features :
+   * Works with grey and black box applications
+   * Test your strategy and trade it live with ASP
+   * Obtain historical data from ASP recordings, or from [BrokerSupport supported data providers]
+   * Exports trade results to CSV format compatible with Excel/R/Matlab
+   * Supports many-instrument strategies
+   * Extremely fast, up to 350,000 ticks/second
+
+Click for a demo.
+
+http://tradelink.googlecode.com/files/gauntlet1661.jpg
+
+
+
+
+== Chartographer ==
+
+Chart yearly and intra-day stocks. Yearly charts provided at no charge by Google. (click for demo)
+
+http://tradelink.googlecode.com/files/chartographermain.jpg
+
+== Replay ==
+
+Relays an entire day of historical data, to any TradeLink application.
+
+Benefits:
+ * Supports real-time simulation playback (1 second = 1second)
+ * Multi-instrument playback
+ * Full-fledged TradeLink broker
+ * Multiple applications can connect at once
+Click for a demo.
+http://tradelink.googlecode.com/files/ReplayASP.jpg
+
+== Time and Sales ==
+
+View tick files in familiar format.  Click for demo.
+
+http://tradelink.googlecode.com/files/TimeSales.jpg
+
+== Tik Converter ==
+
+Import historical data from [BrokerSupport supported data providers.]
+
+Benefits :
+ * Augment tradelink data-recording features with before-fact market data
+ * Import data from other programs such as eSignal or TradeStation
+ * purchase inexpensive market data online from [http://cqgdatafactory.com CQG] and import
+
+Click picture for a demo.
+http://tradelink.googlecode.com/files/TikConverter.jpg
+
+== TradeLink Platform ==
+
+All TradeLink applications are built on the TradeLink Core:
+
+Core Features :
+
+ * Quickly construct closed source applications from our LGPL code objects
+ * Proven architecture with thousands of users and hundreds of unit tests
+ * AppKit : build applications for re-sale, including authentication and bug reporting
+ * Research : Scrape symbol lists from any website, generate random symbols and tick data.

@@ -1,0 +1,7 @@
+#summary Easy logging in tradelink
+
+By default a log will be created inside the PROGRAM folder in AppData Local.  
+
+This folder can be found using Start->programs->Tradelink->Logs
+
+[http://code.google.com/p/tradelink/w/edit/ComponentAssemblaTicket See assembla ticket example for how to use a log instance.]

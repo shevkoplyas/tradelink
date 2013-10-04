@@ -1,0 +1,45 @@
+#summary Tracking positions in TradeLink
+
+TradeLink notifies you when :
+ * positions exist when your response is started.  (GotPosition)
+ * trades occur after your response is started. (GotFill)
+
+Position Tracker allows you to track these two things in one place, even for many positions.
+
+Here's how to use it :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+ // create a position tracker
+ PositionTracker pt = new PositionTracker();
+ // give it fills
+ public override GotFill(Trade fill)
+ { 
+   pt.Adjust(fill);
+ }
+ // give it initial positions
+ public override GotPosition(Position p)
+ {
+   pt.Adjust(p);
+ }
+ public override GotTick(Tick k)
+ {
+   // now when a tick arrives,
+   // I can check to see whether or not I have position in this tick
+   if (pt[k.symbol].isFlat)
+   {
+      // do my entry logic
+      // eg, take a position if we're flat
+      sendorder(new BuyMarket(tick.symbol,100));
+   }
+   else
+   {
+      // flat our position
+      sendorder(new MarketOrderFlat(pt[k.symbol]));
+   }
+ }
+
+ public MyResponse() {}
+}
+}}}

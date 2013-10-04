@@ -1,0 +1,19 @@
+#summary Sending email notifications
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+
+public class MyResponse : ResponseTemplate
+{
+    PositionTracker pt = new PositionTracker();
+    decimal alertlevel = -100;
+    override void GotFill(Trade fill)
+    {
+        decimal closedpl = pt.Adjust(fill);
+        // alert on negative trade
+        if (closedpl<alertlevel)
+           Email("me@mycellphone.com","PL alert",fill.ToString());
+    }
+}
+}}}

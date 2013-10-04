@@ -1,0 +1,5 @@
+#summary Fast grid performance in TradeLink
+
+Improves performance of free DataGridView control
+
+[http://code.google.com/p/tradelink/source/browse/trunk/TimeAndSales/TnS.cs see the Time and Sales app for an example of how to use this component.]

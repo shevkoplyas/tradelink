@@ -1,0 +1,60 @@
+#summary Setting up Interactive Brokers TWS for use with TradeLink
+
+<wiki:toc max_depth="3" />
+
+=== Pre-requisites === 
+ # [http://www.interactivebrokers.com/en/control/systemstandalone.php?os=win&ib_entity=llc Install IB TWS] and TradeLink
+ # An IB account.  We recommend testing with a paper trading account.
+ # if you don't have an account, use demo account: user: edemo password: demouser
+
+=== Setup === 
+ # In TWS, choose Configure->API and enable socket connections
+ # Make TWS run on a port in the 7496-7500 range (default place the _InteractiveBrokers_ connector (`TWSServer.exe`) looks)
+ # You should add the IP address 127.0.0.1 to the _Trusted IP Addresses_ field  (see screenshot)
+
+http://franta.com/projects/tradelink/IBTWSTLconfig.jpg
+
+=== Testing === 
+Once you have TWS running and pre-requisites configured:
+ # start _InteractiveBrokers_ from the Start menu -> ... -> _TradeLink Connectors_
+ # open Quotopia and start typing a symbol and verify you can get quotes (e.g. just type 'AAPL')
+ # double click a symbol to send orders and verify this is working.
+ # start ASP to trade a response, etc.
+
+=== IB Security Symbols ===
+
+IB has very particular (and also sometimes inconsistent) ways of providing a particular contract.
+
+{{{<symbol/localsymbol/classname> <exchange> <security type>}}}
+
+Examples:
+ * EUR.USD CASH IDEALPRO  (spot FOREX currency)
+ * 6BU1 GLOBEX FUT  (GBP.USD September 2011 currency futures)
+ * AAPL   ('STK' is implied by default)
+ * FSFX_OCT_11 FUT DTB
+ * IBM CALL 201111 165
+
+The easiest way to determine the correct symbol :
+ # right click the symbol in TWS
+ # choose _Contract Info_ -> _Description_, 
+ # "Symbol/LocalName/LocalClass", "Security Type" and "Exchange". 
+ # If you need to determine letter codes for futures contract months, look [http://en.wikipedia.org/wiki/Futures_contract#Codes here].
+
+With Verbose enabled you can also send an order from TWS and you'll see the correct symbol to use in tradelink in the tws connector window/log.
+
+=== Quotopia Symbol Note ===
+
+When using quotopia with long symbols (those that contain a space), you should end your symbol with a comma.   Even if you are only specifying one symbol.   for example
+
+ESH3 GLOBEX FUT,
+J7H3 GLOBEX FUT,
+
+or for multiples at the same time :
+
+YG___APR_13 NYSELIFFE FUT,GCJ3 NYMEX FUT,IBM
+
+ASP always requires commas to be used for multiple symbols, never for single symbol.
+
+=== Common Questions === 
+ * You can enable verbose logging by setting line below VERBOSE to 1 in TwsConfig.txt in folder you installed TradeLink
+ * If you need to change your account currency, see `TwsServer.Config.txt` in folder you installed TradeLink

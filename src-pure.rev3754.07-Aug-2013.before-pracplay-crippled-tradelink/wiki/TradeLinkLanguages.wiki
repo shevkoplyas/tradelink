@@ -1,0 +1,12 @@
+#summary Languages TradeLink supports for Trading
+
+TradeLink is open source and fully .net CLI compliant.
+
+This means you can program in any .net language with TradeLink.
+
+This includes many, many languages, such as:
+ * c# (c sharp)
+ * visual basic (vb)
+ * f#
+ * managed c++
+ * [http://en.wikipedia.org/wiki/List_of_CLI_languages pascal, python, java and many others]

@@ -1,0 +1,25 @@
+#summary Replay a trading day
+
+= Introduction =
+
+The simplest way to replay a single trading day is to use Replay.
+
+Replay works with most of the applications in the suite that use a data feed.  
+
+Instead of using a live feed from BrokerServer, just start replay instead.  Playback the day you wish, whatever stock data is available will be made available to other tradelink applications.
+
+= Details =
+
+  # Start->Programs->TradeLink->Replay
+  # Select a day (you must already have TradeLinkTickData for this day)
+  # We'll select 2007-09-26 because this is the sample data
+  # Select a desired playback speed.  Default is real-time
+  # Select a day start (replay will fast forward to this point)
+  # Click play.  Playback will begin
+  # Start any TradeLink application that uses a live data feed.
+  # For example : Start->Programs->TradeLink->Quotopia
+  # Type some stock symbols you traded (sample data includes: CE FRX FTI WAG )
+  # you will see the ticks come in for those stocks as it arrives
+  # double click a stock to get an order ticket
+  # place a market order.  on the trades tab you should see the fill
+  # place a limit order off the market.  you can see and cancel it on the orders tab

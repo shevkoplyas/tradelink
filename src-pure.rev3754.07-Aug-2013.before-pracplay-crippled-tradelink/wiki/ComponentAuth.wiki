@@ -1,0 +1,44 @@
+#summary User Authentication
+
+Steps :
+ # Setup a wiki or blog that only you have write access to 
+ # (eg for a blog, disable comments)
+ # Create an Auth instance in your application with URL from step 1
+ # Ensure that your app disables functionality if Authentication fails
+ # Have users report their registration codes to you when they run the app
+ # Add their codes to URL in step 1
+
+
+How to create an auth instance :
+
+{{{
+using TradeLink.AppKit;
+
+public partial class MyProgram : Form
+{
+    Auth _auth = new Auth("http://myblog.blogspot.com/post55");    
+    public MyProgram()
+    {
+          InitializeComponent();
+          // check for authorization
+          if (!_auth.isAuthorized()) error();
+        
+    }
+
+    void button2_Click(object sender, EventArgs e)
+    {
+        // disable this button if not authorized
+        if (!_auth.isValid) { error(); return; }
+        // whatever it does normally
+        ok();
+    }
+    void button1_Click(object sender, EventArgs e)
+    {
+       // this button is still enabled
+       ok();
+    }
+
+    void error()  {  MessageBox("You are not authorized to perform actions."); }
+    void ok()  {  MessageBox("action successful"); }
+}
+}}}

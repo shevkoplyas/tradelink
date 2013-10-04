@@ -1,0 +1,30 @@
+#summary Features supported by Live Provider Connectors
+#labels Featured
+
+|| Provider ||  Broker (order/cancel/position/fill) || Level1 Ticks || Level 2 Ticks || Live Bars || Historical Bars || Equities || Options || Futures || Currencies ||
+|| [TwsConfiguration IB] || Yes || Yes || Yes || Yes || Yes || Yes || Yes || Yes || Yes || 
+|| Genesis || Yes || Yes || Yes ||Yes || || Yes || Yes || Yes || Yes || 
+|| Lightspeed || Yes || Yes || ||Yes || || Yes ||  ||  ||  || 
+|| [SterConfig Sterling] || Yes || Yes || ||Yes || || Yes || Yes ||  Yes || Yes  || 
+|| GrayBox + || Yes || Yes || || Yes || || Yes || Yes || || || 
+|| Blackwood || Yes || Yes || ||Yes || Yes || Yes ||  ||  ||  || 
+|| DAS || Yes || Yes || ||Yes ||  || Yes || Yes || Yes  ||  || 
+|| TD Ameritrade || Yes || Yes || ||Yes || || Yes || Yes || Yes || Yes || 
+|| MB Trading || Yes || Yes || ||Yes || Yes || Yes || Yes || Yes || Yes || 
+|| REDI / Goldman || Yes || Yes || ||Yes || || Yes ||  || Yes ||  || 
+|| RealTick || Yes || Yes || ||Yes || || Yes ||  ||  ||  || 
+|| DBFX     || Yes ||     || ||    ||Yes||   ||  ||Yes ||  ||
+|| Rithmic + || Yes || Yes || No || Yes || No || Yes ||  || Yes || Yes || 
+|| DTN iqFeed ||  || Yes ||  || Yes || Yes ||  ||  ||  ||  || 
+|| eSignal Desktop API ||  || Yes || || Yes || Yes ||  ||  ||  ||  ||  
+|| Nanex NxCore + || || Yes || || || ||  ||  ||  ||  ||  
+|| [TradeLinkFix FIX ++] || Yes || Yes || Yes ||Yes ||Yes ||Yes  ||Yes  ||Yes  ||Yes  ||  
+|| Assent || Yes || Yes || Yes ||Yes || || Yes ||  ||  ||  || 
+
++ BETA Please report issues to the users list at http://community.tradelink.org
+
+++ [TradeLinkFix TEMPLATE example only].
+
+[BrokerImplementationGuide Need to add your broker to this list?]
+
+[DataSupport Do you want to import historical data? See here.]

@@ -1,0 +1,25 @@
+#summary DTN-iqfeed configuration
+
+[http://iqfeed.net https://tradelink.googlecode.com/files/iqfeed_logo.jpg]
+*tradelink.org Recommended Feed*
+
+== Requirements ==
+ # [http://www.iqfeed.net/index.cfm?displayaction=support&section=download dtn installed]
+ # dtn feed subscription ([https://www.iqfeed.net/tradelink/index.cfm?web=iqfeed&displayaction=start 7-day trial is available])
+
+
+== Steps ==
+ # start DTN connector in tradelink from Start->Programs->TradeLink Connectors->DTN
+ # enter login information and click login.
+   # if you have built your own connector, also provide your product code
+ # dtn should automatically start
+ # start tradelink client (eg ASP, record, quotopia)
+ # enter symbols to get quotes
+
+== Notes ==
+ * daily and intraday bar requests
+
+== Building IQfeed connector ==
+ * if you want to build your own iqfeed connector in tradelink, [https://www.iqfeed.net/dev/index.cfm?section=registerForm you will need a developer registration product code]
+ * you will want to provide this code in the iqfeed.exe.config file
+ * to compile the project, you will also need to delete reference to the file z_PracplayProductCode.cs

@@ -1,0 +1,34 @@
+#summary View book (level2/depth) information visually in tradelink
+
+Using Control :
+ * drag control onto any form
+
+Using Window
+ * call show or Toggle() method to view it
+
+Example
+{{{
+public partial class MyProg : Form
+{
+  BookTracker bt = new BookTracker();
+  BookView bv = new BookView();
+  TLClient tl = new TLClient_WM();
+  public MyProg()
+  {
+     // if we have level2 data available at broker
+     if (tl.RequestFeatureList.Contains(MessageTypes.DOMREQUEST))
+     {
+        // display the book
+        bv.Toggle();
+        // handle ticks and send to the book tracker
+        tl.gotTick+=new TickDelegate(bt.newTick);
+        // handle new books and send to book viewer
+        bt.NewBook+= new BookDelegate(bv.GotBook);
+        // enable DOM with depth of 10
+        tl.TLSend(MessageTypes.DOMREQUEST,Book.NewDomRequest(10));
+        // request ticks for a symbol
+        tl.Subscribe(new BasketImpl("IBM")); 
+     }
+   }
+}
+}}}

@@ -1,0 +1,29 @@
+#summary Overview of the TradeLink protocol
+
+== Introduction ==
+The tradelink protocol is the super-set of all features offered by tradelink.
+
+Through the protocol, you can do things like :
+ * register for ticks on a security
+ * send orders
+ * receive fill notifications
+ * get closing imbalance for a stock symbol
+ * and more
+
+The [ResponseDocs Response Interface] providers a sub-set of the most common features through a similiar interface.   We recommend you use Responses unless you know what you're doing.
+
+== Mechanics ==
+
+TradeLink messages :
+ * are presently sent as Windows Messages.  
+ * have a source, destination, type and a message body.
+ * have source equal to caption of sending window (often hidden)
+ * have destination equal to caption of destination window (often hidden)
+ * have message body represented as a serialized string
+ * should be deserialized according to message type
+ * [http://code.google.com/p/tradelink/source/browse/trunk/TradeLib/TradeLink.cs message types are found in TL2 enums in c#] and [http://code.google.com/p/tradelink/source/browse/trunk/BrokerServers/TradeLibFast/TradeLink.h c++ projects].
+
+You can see the TLClient_WM and TLServer_WM classes in the c++ and c# projects for working examples of this protocol.
+
+
+ 

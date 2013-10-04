@@ -1,0 +1,33 @@
+#summary How to keep your TradeLink release up-to-date
+
+= Introduction =
+
+TradeLink comes with a program called TradeLink update.
+
+Update can be used to keep your TradeLink release current.
+
+To use, simply run the program.  
+
+= How it works = 
+
+Upon being run, Update does the following :
+  * uninstall your existing versions
+  * download the latest releases
+  * install them
+
+= How you can use it =
+
+  * Keep your system up-to-date with latest bug-fixes and features
+  * Reset your system if you're having problems with your local configuration
+
+= Running Automatically =
+
+You can setup Update to run as a scheduled task at whatever frequency you like.  To do this :
+
+  # Start->ControlPanel->Scheduled Tasks
+  # add a scheduled task
+  # browse to TradeLink installation location (c:\program files\tradelink\tradelinksuite)
+  # choose Update.exe
+  # select when you want update-to-run
+  # choose ok
+  # You can verify the update was run by checking UpdateLog.txt in the TradeLinkSuite directory.

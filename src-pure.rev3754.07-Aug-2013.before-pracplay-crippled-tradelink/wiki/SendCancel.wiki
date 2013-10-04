@@ -1,0 +1,20 @@
+#summary Canceling orders
+
+Here's how to cancel an order.  
+
+{{{
+List<uint> pending = new List<uint>();
+bool orderfilled = false;
+void GotFill(Trade fill)
+{
+  if (orderfilled) return; // only do next step once
+  // we got a fill, cancel other pending orders
+  foreach (uint id in pending)
+    SendCancel(id);
+  orderfilled = true;
+}
+}}}
+
+You need the ID of the orders you want to cancel.   
+
+See GettingOrderIds if you're not sure how to get ids.

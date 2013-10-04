@@ -1,0 +1,19 @@
+#summary Tick buffer overruns
+
+These messages can appear when :
+ * you have many symbols subscribed
+ * you are trading very frequently ticking/trading symbols
+ * the market 'pushes' in above average trading activity
+ * Your machine is doing many things and it gets behind processing ticks
+
+In all of these cases, buffer overruns will occur.
+
+Buffer overruns can result in lost/bad ticks.
+
+If you see these messages, just increase the size of your buffer.    Every 10,000 size increase in your buffer will use an extra half megabyte of memory.   
+
+To do this :
+ # locate folder you installed tradelink (eg c:\program files\tradelink)
+ # find asp.exe.config
+ # increase the size of the tickbuffersize value until you no longer receive overruns
+ # restart ASP if it was already running

@@ -1,0 +1,20 @@
+#summary TradeLink on Unix (Mac, Linux, etc) via Mono
+
+You can build and run TradeLink on Unix and other platforms via the [http://www.mono-project.com/Main_Page the Mono project].   
+
+Mono is a Microsoft and Novell supported an open-source implementation of .net.   
+
+Most things in tradelink should work on mono, at present we do not have an automated binary release for mono.  You have to download the source and build the project, and make a couple of modifications (see notes section below).   We do have reports of tradelink working under mono from a number of people.
+
+We would like to see more involvement and feedback from people running mono with tradelink on the [http://community.tradelink.org community list], so we can hopefully produce a binary and install script that is unix compatible.
+
+Please see notes for further mono setup tips :
+
+
+Notes :
+ * Here is a patch to make building mono easier ([http://code.google.com/p/tradelink/issues/attachmentText?id=1023&aid=10230008000&name=mono.diff&token=l5ta3G6Ng1mIe-Lqs2y55KSaNQs%3A1328632294249 view] | [http://tradelink.googlecode.com/issues/attachment?aid=10230008000&name=mono.diff&token=bRvhZ-eSFcNeKn6z8r57vfy__5s%3A1328632606051 download])
+ * [http://code.google.com/p/tradelink/issues/detail?id=1023 You should look at suggestions on Mono enhancement ticket]
+ * In live feed and broker applications, You will need to switch your tradelink connectors to use the tradelink tcp/ip protocol rather than windows messaging.   [http://code.google.com/p/tradelink/wiki/RemoteProviderConnection This requires configuration file changes only, is described here.]
+ * Things that depend on windows registry (version number shown in tradelink app, some log file locations) may not work correctly.  We could use your help on the [http://community.tradelink.org community list] to do these in a platform independent way.
+ * PInvoke is probably not going to work, so there's a few functions in tradelink (mostly windows messaging) that don't seem to work.   
+ * Please join the [http://community.tradelink.org community list] if you have any questions, problems or just want to discuss and help make tradelink a more seamless experience on mono

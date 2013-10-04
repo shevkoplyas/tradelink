@@ -1,0 +1,21 @@
+#summary Tracking Orders
+
+When you send an order to TradeLink, it copies your order back to you.  
+
+You will also receive orders copied from other strategies, and human trading.
+
+You can ignore these, or deal with them as you will.
+
+Example :
+{{{
+// only allow 10 limit orders per day, cancel other order
+int MAX = 10;
+int orders = 0;
+void GotOrder(Order order)
+{
+  if (order.isLimit) orders++
+  if (orders>MAX)
+     SendCancel(order.id);
+}
+
+}}}

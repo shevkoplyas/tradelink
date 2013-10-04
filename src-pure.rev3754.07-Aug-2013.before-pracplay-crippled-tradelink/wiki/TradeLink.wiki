@@ -1,0 +1,137 @@
+#summary Get started with TradeLink
+
+<wiki:toc max_depth="3" />
+
+=== Overview ===
+
+[WhatIsTradeLink What is TradeLink?]
+
+=== Installation ===
+
+<wiki:video url="http://www.youtube.com/watch?v=ucCL86GuXZc"/>
+
+ # Download/Install your chosen TradeLink Release: ([http://code.google.com/p/tradelink/downloads/list?can=3 Most Stable] | [http://code.google.com/p/tradelink/downloads/list?can=2&q=EDGE Most UpToDate])
+ # [http://code.google.com/p/tradelink/wiki/TradeLinkFaq#Brokers_and_Feeds Configure your broker/feeds]
+ # Choose appropriate quick start guide below
+
+Problems? [http://code.google.com/p/tradelink/wiki/TradeLinkFaq#First-Time_Problems See the questions page.]
+
+=== Live Discretionary Trading ===
+
+
+ 1. [TradeLinkFaq#Brokers Start and configure your broker software and broker connector.]
+ 1. Start Quotopia from TradeLink programs group in Start menu
+ 1. In the `Markets` tab, type a symbol to receive a quote. The format of the symbols depends on the [http://code.google.com/p/tradelink/wiki/TradeLinkFaq#Brokers_and_Feeds broker].
+ 1. Double click symbol to get order ticket and submit a market order
+ 1. You can verify that your order was filled on Trades tab
+ 1. Go back to markets tab, double click symbol to get ticket. 
+ 1. Submit a limit order off the market
+ 1. Go to the `Orders` tab and right click and cancel your order
+ 1. To make automated trades, see the [ResponseQuickStart Response quick-start].
+
+=== Live Semi-Automated Trading ===
+ 1. [TradeLinkFaq#Brokers Start and configure your broker software and broker connector.]
+ 1. Start ASP from TradeLink programs group in start menu
+ 1. Click 'L' button to choose a response library, from which you will choose a strategy
+ 1. Browse to Responses.dll in folder you installed TradeLink (typically Program Files\TradeLink\)
+ 1. Choose OK
+ 1. Select a response to trade from drop down.    Choose 'Quotelet'
+ 1. In Quotelet window, enter a symbol and click new.
+ 1. You should see quotes appear.   Click buy and sell to send orders for symbol.
+ 1. This is an example of a grey-box trading application.
+ 1. Open another quotelet window by re-choosing quotelet from ASP response list
+ 1. enter a new symbol in resulting window to get a new quote
+
+=== Live Fully Automated Trading  ===
+
+<wiki:video url="http://www.youtube.com/watch?v=tW9rXZyBJ8g"/>
+
+ 1. [TradeLinkFaq#Brokers Start and configure your broker software and broker connector.]
+ 1. Start ASP from TradeLink programs group in start menu
+ 1. Click 'L' button to choose a response library, from which you will choose a strategy
+ 1. Browse to Responses.dll in folder you installed TradeLink (typically Program Files\TradeLink\)
+ 1. Choose OK
+ 1. Choose SMAresponse from the drop-down list for the library (or whatever response you want to trade... AlwaysEnter, Tutorials, etc)
+ 1. You should be careful not to do this on a live trading account.
+ 1. You will see your response appear below as an active response.
+ 1. Select this instance from active list.  
+ 1. Right click and choose 'edit symbols'.
+ 1. Enter a symbol this response should trade  (e.g. IBM)
+ 1. Choose OK.
+ 1. You will see those symbols appear next to your response.
+ 1. From this point your response will act according to its instructions.
+ 1. Open the debug window to see messages from all active responses.
+ 1. If you chose AlwaysEnter, you should see positions continually entered and exited in the symbol you traded on.
+ 1. If you chose SMA response, you will see it enter trades on MA crossovers.
+ 1. To remove a remove, right click and do remove.
+ 1. To stop trading all responses, close ASP.
+
+
+=== Historical Trading ===
+
+ 1. Start Replay from TradeLink programs group in start menu
+ 1. Select a trading day to play back.  
+ 1. Sample data provided is for 9/26/2007.   Select this date
+ 1. Click play.
+ 1. Open Quotopia.   On the `Markets` tab, type the following symbols, pressing Enter after each (yes, we know this isn't exactly standard UX behavior): ibm, wag, frx, fti
+ 1. You should begin to see quotes for each symbol
+ 1. You will not see quotes for IBM because no sample data is provided for IBM on this day.
+ 1. Start ASP from the Tradelink programs group in the Start Menu
+ 1. Choose `Responses.dll` from the location you installed TradeLink in
+ 1. Select Quotelet from the drop-down of available responses
+ 1. Enter 'WAG' as symbol in the Quotelet window and click 'New'
+ 1. You will see quotes that are same as any other Tradelink programs receive for WAG
+ 1. Click 'buy' to buy 100 shares of WAG historically
+ 1. In Quotopia, check position size column for WAG.   
+ 1. You will see that the 100 share fill from the Quotelet window was reflected in Quotopia
+ 1. Choose the `AlwaysEnter` response from ASP's responses drop-down
+ 1. Right click the `AlwaysEnter` created in the active responses list, choose `Edit symbols` and enter `FRX` as symbol
+ 1. In Quotopia you will see automated trades occurring for `FRX`.
+
+=== Historical Data Importing ===
+
+ 1.  You can import or record data.
+ 1. [TradeLinkTickData See the tick data guide for details]
+
+=== Historical Testing ===
+
+ 1. Start Gauntlet (start->programs->tradelink->gauntlet)
+ 1. In the `Options tab`, choose the `response library` button
+ 1. Browse to Responses.dll in the location you installed TradeLink in (usually `c:\program files\tradelink`). Choose OK.
+ 1. Click a response to test in drop-down.  Select `AlwaysEnter`
+ 1. Click symbol and choose a symbol to trade.   All dates for this symbol will be tested.
+ 1. Click `run the gauntlet`
+ 1. When simulation is complete, check the `Results` tab for a summary of the performance.
+ 1. Click the `Raw Results Folder` button in the `Studies` tab to see the raw trades file (assuming you have 'generate trades as CSV' (?? this is no longer there) checked in the `Options` tab)
+ 1. Look for the trade file with the name of your response and the present time
+ 1. Double-click to open in Excel the list of trades that occured
+
+=== Historical Development ===
+
+
+ 1. Start kadina, start->programs->tradelink->kadina
+ 1. From Add Response menu, browse to Responses.dll in the folder you installed TradeLink in
+ 1. Choose 1SMAResponseAuto` from pop-up window.   Press Ok.
+ 1. Open the tick data folder from Start -> Programs -> Tradelink -> Tick data
+ 1. Browse to `WAG20070926.TIK` file in this folder
+ 1. Drag and drop this file onto the Kadina window. The filename should appear in window title.
+ 1. Click a duration button to play through the market.  E.g. click the `1hour` button to play through next hour of data.  Each time you click it, Kadina will play through the next hour.
+ 1. View raw time and sales data in the `Ticks` tab, view response indicators for same time in the `Indicators` tab
+ 1. Orders, fills and positions occur on their own tab
+ 1. You can use this to troubleshoot what is happening in response at a given time
+ 1. Play to the problem time, then use the indicators and other output from the response to determine how the response is being affected by incoming data and the current state of the internal data.
+
+=== Strategy Development ===
+<wiki:video url="http://www.youtube.com/watch?v=cDRj2VR_osI"/>
+ 1. Start -> Programs -> Tradelink -> Pracplay Glean
+ 1. Use assists to create strategies
+ 1. Click play to test your strategy on included data
+ 1. [http://www.pracplay.com/products/glean/glean_reference see guide for more tips and help]
+ 1. Click the '?' button to ask questions to the community
+
+
+=== Problems and Questions ===
+ # [http://code.google.com/p/tradelink/wiki/TradeLinkFaq See the questions page]
+ # [http://community.tradelink.org Community help]
+ # [http://www.pracplay.com/buy commercial products]
+ 

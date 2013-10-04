@@ -1,0 +1,37 @@
+#summary Sendorder Tracker
+
+Makes sending orders to connectors a bit simpler.
+
+At present this will only work from applications and not responses, because it requires access to a full client object.
+
+Can resend orders on a given error code, and subscribe symbols automatically prior to sending new orders for said symbol.
+
+{{{
+SendorderTracker _sot;
+
+// setup send order tracking
+_sot = new SendorderTracker(tl, 200);
+
+// notify of order status            
+_sot.OrderIdStatusEvent += new OrderId_Status(_sot_OrderIdStatusEvent);
+// other debugging
+_sot.SendDebugEvent+=new DebugDelegate(debug);
+// wait for a symbol to load before sending first order
+_sot.SubscribePause = Properties.Settings.Default.WaitBetweenSymSubscribe;
+// whether to wait between orders (for brokers that enforce order per second limits)
+_sot.Wait = Properties.Settings.Default.WaitBetweenNoOrders;
+_sot.WaitItem = Properties.Settings.Default.WaitBetweenSendOrder;
+// whether to subscribe before sending an order, or send it immediately without a tick subscription
+_sot.SubscribeBeforeSend = Properties.Settings.Default.SubscribeBeforeSend;
+// when resending of the same order is allowed
+_sot.ResendOnSelectError = true;
+// define which types of sending errors will trigger a resend (eg this example will continually resend the order until the symbol subscription has loaded)
+_sot.SelectedErrors.Add((int)MessageTypes.SYMBOL_NOT_LOADED);
+
+
+// override your normal sendorder function to have this tracker manage all your sends
+void sendorder(Order o)
+{
+   _sot.sendorder(o);
+}
+}}}

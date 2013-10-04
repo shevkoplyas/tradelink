@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="SterServer.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <userSettings>
+        <SterServer.Properties.Settings>
+            <setting name="CoverEnabled" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="defaultaccount" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="Sleep" serializeAs="String">
+                <value>50</value>
+            </setting>
+            <setting name="OrderSleep" serializeAs="String">
+                <value>1</value>
+            </setting>
+            <setting name="CancelWait" serializeAs="String">
+                <value>1000</value>
+            </setting>
+            <setting name="VerboseDebugging" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="IgnoreOutOfOrderTicks" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="FixOrderDecimalPlaces" serializeAs="String">
+                <value>2</value>
+            </setting>
+            <setting name="AutoSeUnsetId" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="TLClientAddress" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="TLClientPort" serializeAs="String">
+                <value>50000</value>
+            </setting>
+            <setting name="AutoCapitilizeAccounts" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="UseXMLQuotes" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="PaperTrade" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="PaperTradeUseBidAsk" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="OversellSplit" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="PostSymbolSubscribeWait" serializeAs="String">
+                <value>100</value>
+            </setting>
+            <setting name="AutosubscribeOrderSym" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="MinLotSize" serializeAs="String">
+                <value>1</value>
+            </setting>
+            <setting name="RegSHOShorts" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="PositionUpdateLimit" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="UseServerStops" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="SendCancelOnRejects" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="SendCancelOnError" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="UseSubscribedSymbolForNotify" serializeAs="String">
+                <value>True</value>
+            </setting>
+        </SterServer.Properties.Settings>
+    </userSettings>
+</configuration>

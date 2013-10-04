@@ -1,0 +1,126 @@
+#summary Overview of Tradelink.org
+
+Do *ANY* of the following?  
+ * trade or invest in futures, FX, equities or options
+ * make data-driven financial decisions 
+ * make frequent investment decisions (daily/weekly/monthly/HFT)
+ * want to automate, test and trade your ideas
+ * buy and sell a lot of securities
+ * need high performance and maximum control
+
+If so, Tradelink.org may be for you.
+
+=== Benefits ===
+
+Tradelink.org supports both retail and professional traders, funds and firms.
+
+Tradelink.org benefits :
+ * All tradelink.org source code freely available under LGPL license
+ * Multiple asset classes (futures, FX, equities, options)
+ * 15+ brokers and data feeds built-in
+ * Low Latency execution (0.01milliseconds = 10microsecond)
+ * Fast portfolio-realistic simulations 
+    * 100,000-1million ticks/second (disk)
+    * up to 20million ticks/second (optimization runs)
+ * Level1 and Level2 data supported
+ * Tick and EOD data can be [TradeLinkTickData recorded or imported from variety of sources]
+
+=== Benefits Delivery ===
+
+Tradelink lets users build strategies in minutes or hours.  
+
+This is the fastest way to monetize your tradelink use.
+
+Most users start this way, using tradelink off-the-shelf applications :
+  * Gauntlet
+  * ASP
+  * Quotopia
+  * Connectors
+  * etc
+
+Tradelink's Off-the-shelf platform minimizes decision making for new users.  We call off-the-shelf users Platform users.
+
+Platform users benefit from :
+  * high performance 
+  * zero upfront cost (open source model)
+  * 25,000+ installed base and 500+ member developer community
+  * flexibility to change underlying platform at any future point (open source)
+
+Apart from the platform, many Tradelink users have very specific trading or business requirements.  Frequently this is because they :
+  * outgrow existing 3rd party platforms 
+  * are tradelink platform users who outgrow one of the platform apps
+
+Users that fit these descriptions may benefit from Tradelink AppKit.  
+
+AppKit Benefits :
+  * generally less expensive than switching platforms
+  * faster than switching platforms
+  * better control versus choosing from existing platforms
+  * overall, AppKit improves your ROI
+
+We call users who build their own tradelink applications AppKit users or SDK users (software development kit).
+
+Both the platform applications and the AppKit are open sourced on tradelink.org via the LGPL license.
+
+=== Platform In Depth ===
+
+The off-the-shelf applications in TradeLink are comparable to closed source platforms like
+  * TradeStation
+  * NinjaTrader
+  * NeoTicker
+  * etc
+
+Tradelink benefits beyond these platforms :
+  * performance
+  * openness  
+  * low-latency high frequency trading 
+  * standard intraday/daily/weekly strategies and indicators
+
+These benefits allows you to immediately trade a wider range of strategies, in a more efficient way.
+
+Tradelink's open source nature helps you minimize risks :
+ * zero cost option to meet current needs 
+ * zero cost option to adapt to unknown future requirements
+ * avoid proprietary vendor architectures which may meet your needs today but not tomorrow
+ * avoid pricing lock-ins from vendors who stop innovating
+
+[TradeLinkSuite Tradelink's platform applications], let you:
+ * construct, test and trade algorithmic strategies (gauntlet, ASP)
+ * construct and trade discretionary/semi-automated strategies (ASP, quotopia)
+ * Collect market data and analyze it for trends (record, gauntlet, ASP)
+ * Do all of the above across many [ProviderFeatureMatrix brokers and feeds], in live or simulated environments.
+
+
+==== More Information ====
+ * [TradeLink Try Tradelink Now]
+ * [http://faq.tradelink.org Read Answers to Common Questions]
+ * [http://community.tradelink.org Join Tradelink.org Community]
+
+
+=== App Kit / SDK In Depth ===
+
+At some point in every platform, you will want to improve or change it.
+
+Tradelink provides this flexibility because TradeLink is open source.   
+
+Your firm can :
+  * build almost any trading or investment decision app,   
+  * save money and time versus buying or building from scratch
+  * Access our 500+ member developer community
+  * Build using AppKit components tested over our 25,000+ install user base, such as : connectors, simulators, indicators, rule system, security, grid views, logging and more.
+
+This is possible because the tradelink platform itself is built using the AppKit.
+
+Sampling of AppKit applications :
+ * live applications that talk to many feeds or brokers simultaneously
+ * any market simulation
+ * any discretionary trading application, investment or risk model
+ * order entry applications
+ * grid-based applications
+ * free or commercial apps
+ * open or closed source applications. (LGPL is most commercially friendly GPL license)
+
+==== More Information ====
+ * [TradeLinkFaq Read Common Questions]
+ * [TradeLinkAppKit Browse AppKit Documentation]
+ * [http://groups.google.com/group/tradelink-users Talk with Tradelink Users]

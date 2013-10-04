@@ -1,0 +1,251 @@
+#summary Track many per-symbol data points efficiently
+
+When trading multiples symbols in the same response, it's useful to track many values on a per-symbol basis.
+
+<wiki:toc max_depth="3" />
+
+=== Intro to Tracking ===
+
+
+You might have an entry order id for each symbol, as well as an order price.
+
+You can track these efficently and easily using GenericTracker.
+
+GenericTracker can be used with any data type, including ones you create yourself.
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+   // tracker for data points
+   GenericTracker<uint> _id;
+   GenericTracker<decimal> _price;
+   // ensure order ids are unique
+   IdTracker _idt = new IdTracker();
+   
+
+public override void GotTick(Tick k)
+{
+   int idx = _id.getindex(k.symbol);
+   // see if we have it
+   if (idx==GenericTracker.UNKNOWN)
+      idx = _id.addindex(sym,0);
+   // if we still don't have it, ignore
+   if (idx==GenericTracker.UNKNOWN) return;
+   // ignore quotes
+   if (!k.isTrade) return;
+   // check to see if we have an entry
+   if (_id[idx]==0)
+   {
+      // send an entry
+      decimal price = getorderprice(k.trade);
+      uint id = _idt.AssignId;
+      sendorder(new BuyLimit(k.symbol,price,100,id));
+      // save entry information
+      _id[idx] = id;
+      _price[idx] = price;
+      // we're done here
+      return;
+   }
+   // check for price update on existing entry
+   if (getorderprice(k.trade)!=_price[idx])
+   {
+      // cancel order, will be resent when cancel is processed
+      sendcancel(_id[idx]);
+   }
+}
+
+public decimal getorderprice(decimal trade) { return trade * .9m; }
+
+public override void GotOrderCancel(uint id)
+{
+   // look to see if this is one of our entry orders being canceled
+   for (int i = 0; i<_id.Count; i++)
+   {
+      // if it is,
+      if (_id[i]==id)
+      {
+         // reset the entry information so it can be resent
+          _id[i] = 0;
+          _price[i] = 0;
+      }
+   }
+}
+
+public override void Reset()
+{
+  _id = new GenericTracker<uint>();
+  _price = new GenericTracker<decimal>();
+  _id.NewText+=new TextIdxDelegate(newsym);
+}
+
+void newsym(string sym, int idx)
+{
+  // whenever we get a new symbol, add it to any other trackers
+  _price.addindex(sym,0);
+}
+
+}
+}}}
+
+=== Importing tracker settings from a file ===
+
+Generic Trackers can also be used to import parameters from CSV files.
+
+CSV files are editable in excel, so they are a convient way to manage large lists of parameters.
+
+For example, say the following CSV file located in mydocuments\Input.csv :
+
+{{{
+Symbol,Price1,Ignore,Price2,Special,Ignore
+IBM,10,hello,20,true,
+LVS,1,world,1,false,
+MHS,100,,0,true,
+FRX,,,,,
+}}}
+
+Can be mapped to a set of trackers at startup via :
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+        GenericTracker<bool> sym = new GenericTracker<bool>();
+        GenericTracker<decimal> price1 = new GenericTracker<decimal>();
+        GenericTracker<decimal> price2 = new GenericTracker<decimal>();
+        GenericTracker<bool> special = new GenericTracker<bool>();
+        TrailTracker tt = new TrailTracker();
+   public override void Reset()
+   {
+        // get filename
+        string FILE = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\Inputs.csv";
+        // setup mappings between primary tracker and associated symbol data
+        sym.NewTxt += new TextIdxDelegate(gt_NewTxt2);
+        // import symbols
+        GenericTracker.CSVInitGeneric<bool>(FILE,ref sym);
+        // import other data and map to respective tracker
+        GenericTracker.CSVCOL2Generic<decimal>(FILE, ref price1, 1);
+        GenericTracker.CSVCOL2Generic<decimal>(FILE, ref price2, 3);
+        GenericTracker.CSVCOL2Generic<bool>(FILE, ref special, 4);
+        // assign a trailing stop based on price2
+        foreach (string sym in price2.ToLabelArray())
+           tt.DefaultTrail = new OffsetInfo(0,price2[sym]);
+            
+   }
+        void gt_NewTxt2(string txt, int idx)
+        {
+            price1.addindex(txt, 0);
+            price2.addindex(txt, 0);
+            special.addindex(txt, true);
+        }
+}
+}}}
+
+=== Exporting tracker settings to a CSV ===
+
+Just like importing, you can also export selected trackers back to a CSV.
+
+You can export just to one column, leaving other columns unused or read-only.
+
+Lets say you want to save the current price1 values for symbols back to CSV, but leave everything else in the file alone.  Here's our CSV :
+{{{
+Symbol,Price1,Ignore,Price2,Special,Ignore
+IBM,10,hello,20,true,
+LVS,1,world,1,false,
+MHS,100,,0,true,
+FRX,,,,,
+}}}
+
+Here's the code to accomplish this :
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+        GenericTracker<bool> sym = new GenericTracker<bool>();
+        GenericTracker<decimal> price1 = new GenericTracker<decimal>();
+        GenericTracker<decimal> price2 = new GenericTracker<decimal>();
+        GenericTracker<bool> special = new GenericTracker<bool>();
+        // get filename
+        string FILE = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\Inputs.csv";
+
+   int SHUTDOWNTIME = 230000;
+   override void GotTick(Tick k)
+   {
+       if (k.time>=SHUTDOWNTIME)
+       {
+          // only do this once
+          isValid = false;
+          // ensure we have our header
+          GenericTracker.InitCSV(FILE,new string[] { "Symbol","Price1","Ignore","Price2","Special","Ignore" });
+          // write our single track back to price1 column
+          if (GenericTracker.WriteCSV<decimal>(FILE,price1,1))
+             senddebug("wrote price1 values...");
+          else senddebug("error saving price1 values.");
+       }
+   }
+
+}
+}}}
+
+
+=== Creating trading rules from Trackers ===
+
+If you have boolean trackers, you can combine these to form trading rules.   This simplifies logic debugging and understanding of your response.
+
+eg:
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+   // tracker for data points
+   GenericTracker<bool> sym = new GenericTracker<bool>();
+   GenericTracker<decimal> price = new GenericTracker<decimal>;
+   GenericTracker<bool> trigger1 = new GenericTracker<bool>();
+   GenericTracker<bool> trigger2 = new GenericTracker<bool>();
+public MyResponse()
+{
+    // associate all trackers together
+    sym.NewTxt+=new SymIdxDelegate(newtxt);
+}
+
+void newtxt(string txt, int idx)
+{
+   // associate all trackers together
+   price.addindex(txt);
+   trigger1.addindex(txt);
+   trigger2.addindex(txt);
+}
+   
+
+public override void GotTick(Tick k)
+{
+   // ensure symbol is indexed and get index
+   int idx = _id.addindex(k.symbol);
+   // ignore if unknown
+   if (idx==GenericTracker.UNKNOWN)
+      return;
+   // ignore quotes
+   if (!k.isTrade) return;
+   // calculate our indicators (eg goes below then above)
+   trigger1[idx] = k.trade < price[idx];
+   trigger2[idx] = trigger1[idx] && (k.trade > (price[idx]);
+   // update price
+   price[idx] = k.trade * 1.1m;
+   // our rules
+
+   // flat position
+   if (GenericTracker.rulepasses(idx,trigger1))
+     sendorder(new SellMarket(k.symbol,100));
+   else if // reversal (GenericTracker.rulepasses(idx,trigger1,trigger2))
+     sendorder(new BuyMarket(k.symbol,200));
+   else if (GenericTracker.rulepasses,idx,trigger2)) // buy
+     sendorder(new BuyMarket(k.symbol,100));
+    // this strategy has no protection for trading loops or pyramiding
+   
+}
+}}}

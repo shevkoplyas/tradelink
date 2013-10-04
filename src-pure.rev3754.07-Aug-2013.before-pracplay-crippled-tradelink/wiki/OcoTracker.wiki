@@ -1,0 +1,43 @@
+#summary Manage one-cancels-other orders
+
+Use OcoTracker if you have a group of orders which should be canceled if any of the orders is filled.
+
+Here is how to do it:
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+   // create tracker
+   OcoTracker _oco = new OcoTracker();
+   // bind it to stuff
+   public MyResponse
+   {
+       _oco.SendOrderEvent+=new OrderDelegate(sendorder);
+       _oco.SendCancelEvent+=new LongDelegate(sendcancel);
+       _oco.SendDebugEvent+=new DebugDelegate(senddebug);
+   }
+   override void GotFill(Trade t) { _oco.GotGill(t); }
+   override void GotCancel(long id) { _oco.GotCancel(id); }
+
+   // send your oco order
+   override void GotTick(Tick k)
+   {
+       // for purpose of simplicity in this example we'll only watch trades
+       if (!k.isTrade) return;
+
+       // you have some condition which triggers your order
+
+       // eg here we simply send an oco order if we don't already have one for this symol
+       if (_oco.getindex(k.symbol)<0)
+       {
+          // send our oco group
+          // groups can have arbitrary numbers of orders
+          // groups may also contain orders for multiple symbols
+          // when any order in group is touched, the other orders will be canceled
+          
+          // here we are sending buy/sell entry orders with limit and single buy entry stop
+          _oco.sendorder(new BuyLimit(k.symbol,k.trade*.9m,100),new SellLimit(k.symbol,k.trade*1.1m,100), new BuyStop(k.symbol,k.trade*1.5m,100));
+       }
+   }
+}
+}}}

@@ -1,0 +1,83 @@
+#summary Using Remote feeds and Execution providers
+
+<wiki:toc max_depth="3" />
+
+=== Introduction ===
+
+Most TradeLink Connectors support remote clients.
+
+Remote clients allow you to get price and execution services in ASP/Quotopia and Record via tcp/ip.
+
+This is accomplished via TCP/IP but is off by default and must presently be enabled.
+
+=== Server/Connector Setup ===
+ # [http://www.screentoaster.com/watch/stVUNWQ0BIR1FeRVhVWVxfX19U/tradelink2401server A video version of these instructions is available.]
+ # Choose the connectors you want to allow remote connections from (eg eSignal, Sterling)
+ # Go to the folder where you installed TradeLink (eg c:\program files\tradelink)
+ # Find the configuration file associted with the connector in step 1 (eg eSignal.exe.config)
+ # Edit the TLClientAddress property to the ip address you want to accept client connections from.
+ # You can obtain this address by start ->  run -> cmd, `<enter>`, then type: ipconfig`<enter>` and choose the ip address of the network card you wish clients to connect to
+ # Edit the TLClientPort if you wish to use a different port than the default
+ # Start the connector as normal
+ # Connector will attempt to connect to port in background and listen for client connections
+
+_Note: You can use TLClientAddress of 127.0.0.1 to allow local-only connections via TCP/IP._
+
+=== Client Setup ===
+ # [http://www.screentoaster.com/watch/stVUNWQ0BIR1FeRVtcW1hQXlFc/tradelink2401aspip See here for a video of these instructions]
+ # Chose the clients you wish to connect remotely (ASP/Record/Quotopia)
+ # Go to the folder where you installed TradeLink (eg c:\program files\tradelink)
+ # Find the configuration file associted with the client in step 1 (eg ASP.exe.config)
+ # Edit the ServerAddresses property to correspond with the server address you configured above
+ # Edit the ServerPort property to use same value you configured above.
+
+{{{
+            `<setting name="ServerPort" serializeAs="String">
+                <value>50000</value>
+           </setting>
+            <setting name="ServerIpAddresses" serializeAs="String">
+                <value>127.0.0.1</value>
+            </setting>`
+}}}
+
+ # You can enter multiple servers by seperating them with commas.  The client will scan all providers and if there is no preferred provider specified it will use the first running provider.
+{{{
+`<value>127.0.0.1,10.0.0.58,216.33.24.195</value>`
+}}}
+ # Save file and exit
+ # Start the program as normal
+
+=== Notes ===
+ # This feature requires TradeLink 2394 or higher release.
+ # This feature is very new and BETA.  Use with caution and please report problems on [http://code.google.com/p/tradelink/issues/list issue page], or to [EmailUsersGroup tradelink mailing list]
+ # This remote protocol has few security mechanisms and should be used with caution
+ # Quality of this connection depends mostly on the latency and quality of the underlying network, so use with caution when trading.
+ # Servers will support several remote connections at once
+ # C++ connectors do not presently support remote feeds (IB, Genesis, etc)
+ # You should verify that use of this feature does not violate other compliance, licensing or other use agreements you may have with the provider of your feed or brokerage services.
+
+=== Troubleshooting ===
+ # Firewalls server must be configured to allow remote connections from ClientPort
+ # Any routers/firewalls in between client and server must support Client connections to ClientPort on server
+ # If you are on the same network, you should be able to ping Server from Client and vice verca
+ # If you are unable to connect, test your connection by setting the ip address to 127.0.0.1 on both client and server and if it works, this means it's a problem with your network or firewall and not your configuration
+ # on the server, you can run netstat to verify that the server is listening on the port you configured 
+{{{
+C:\Documents and Settings>netstat -a
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State
+  TCP    mypcname:epmap          mypcname:0              LISTENING
+  TCP    mypcname:microsoft-ds   mypcname:0              LISTENING
+  TCP    mypcname:1811           mypcname:0              LISTENING
+  TCP    mypcname:3389           mypcname:0              LISTENING
+  TCP    mypcname:netbios-ssn    mypcname:0              LISTENING
+  TCP    mypcname:microsoft-ds   10.1.1.67:55106        ESTABLISHED
+  TCP    mypcname:1025           mypcname:0              LISTENING
+  TCP    mypcname:5152           mypcname:0              LISTENING
+  TCP    mypcname:10110          mypcname:0              LISTENING
+  TCP    *mypcname:50000*          mypcname:0              LISTENING
+}}}
+
+Any questions should be directed to [EmailUsersGroup TradeLink users group]

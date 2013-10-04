@@ -1,0 +1,17 @@
+#summary Extract symbols from urls
+
+Example  :
+{{{
+using TradeLink.Research;
+
+public void MyResponse : ResponseTemplate
+{
+   public override void Reset()
+   {
+        // get symbols listed on webpage
+        Basket b = Fetch.FromURL("http://finance.yahoo.com");
+        // subscribe to these symbols
+        sendbasket(b);
+   }
+}
+}}}

@@ -1,0 +1,27 @@
+#summary Handling responses to custom messages
+
+This is BETA.
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+ public override void GotTick(Tick k)
+ {
+    // request Liquidity replenishment point for IBM
+    // (this only works on certain brokers)
+    sendmessage(MessageTypes.LRPBID,"IBM");
+ }
+ public override void GotMessage(MessageTypes type, uint id, string data)
+ {
+    switch (type)
+    {
+        case MessageTypes.LRPBID :
+         decimal lrp = 0;
+         if (decimal.TryParse(data,out lrp))
+            senddebug("lrp is: "+lrp);
+         break;
+    }
+ }
+ public MyResponse() {}
+}
+}}}

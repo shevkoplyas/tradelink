@@ -1,0 +1,12 @@
+#summary GotTick documention
+
+Called automatically when a new tick is received.  
+
+{{{
+// Example to track a price
+decimal open = 0;
+void GotTick(Tick tick)
+{
+  if (tick.isTrade && (open==0)) open = tick.trade;
+}
+}}}

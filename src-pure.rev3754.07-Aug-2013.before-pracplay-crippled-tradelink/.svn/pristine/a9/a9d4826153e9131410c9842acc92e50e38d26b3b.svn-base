@@ -1,0 +1,9 @@
+#summary WinSeqEffProbHypo and LoseSeqEffProbHypo indicators in Gauntlet/Kadina trade results.
+
+"One can create a whole bunch of hypothesis testing based profitability measures. Assume any kind of no-arbitrage hypothesis (such as 50% winner and 50% loser, or normal distribution of profits with zero mean). Then calculate the probability of observing the series of trades that we have got, under the hypothesis...
+If the probability of the observed trades is low under the no-arb. hyp, then we can reject the no-arb hypothesis, and we are happy."
+
+--from cyber42
+
+
+

@@ -1,0 +1,100 @@
+#summary Using multiple brokers or data providers at once
+
+<wiki:toc depth="3"/>
+
+=== In ASP ===
+ # Click the asp options '?' button
+ # select from available provider list which you want to use for your data feed
+ # select from available list which should be used for execution
+ # Set FallbacktoAny to false if you only want to use preferred providers even if they are not running
+
+=== In Quotopia ===
+ # In folder you installed TradeLink (eg program files\tradelink)
+ # Open quotopia.exe.config in notepad
+ # Find ExecProvider property and change it to your preferred provider
+ # Find the FeedProvider and change to preferred option
+ # Set FallbacktoAny to false if you only want to use preferred providers even if they are not running
+
+=== In custom code ===
+
+TradeLink supports using multiple brokers at once.
+
+This is an advanced feature that is not supported by off-the-shelf products, but it's useful:
+ # if you have backup data feed
+ # if your execution provider is different than your data provider
+ # if certain brokers have order type you need
+ # etc
+
+
+It works the same as running one broker, you just have one tradelink
+client instance per broker.
+
+eg before you had:
+
+{{{
+TLClient_WM tl = new TLClient_WM();
+tl.gotFill+= new FillDelegatate(fill);
+tl.SendOrder(new BuyMarket("IBM",100));
+}}}
+where as now you can do:
+
+{{{
+// by default client will talk to first broker it finds
+TLClient_WM tl = new TLClient_WM ();
+// heres another instance
+TLClient_WM tl2 = null;
+// get all running brokers
+Providers runningbrokers = tl.TLFound();
+// if we have two, bind to the second one
+if (runningbrokers.length==2)
+    tl2 = new TLClient(runningbrokers[1]);
+// for example, you could send orders to first one (if you have lower
+costs here)
+tl.SendOrder(new BuyMarket("IBM",100));
+// and use 2nd one for better data feed
+tl2.gotTick+= new TickDelegate(primaryfeed);
+// mayb use 1st one for backup feed
+tl.gotTick += new TickDelegate(backupfeed);
+
+// fail over to second feed when no ticks arrive for 120 seconds
+bool failover = false;
+TickWatcher heartbeat = new TickWatcher(120);
+heartbeat.Alert+= new AlertDelgate(lostheartbeat);
+void lostheartbeat(string sym, int delay)
+{
+  failover = !failover
+}
+BarListTracker blt = new BarListTracker();
+void primaryfeed(Tick k)
+{
+  tw.newtick(k);
+  if (failover) return;
+  blt.newTick(k);
+ if (k.trade>Calc.HH(blt)) tl.SendOrder(new BuyMarket(k.symbol, 100));
+}
+
+void backupfeed(Tick k)
+{
+ if (!failover) return;
+ blt.newTick(k);
+ if (k.trade>Calc.HH(blt)) tl.SendOrder(new BuyMarket(k.symbol, 100));
+}
+
+}}}
+
+You can also make this more adaptable and not worry about the specific
+brokers/provided attached....  by using the RequestFeaturesList on
+each client.
+
+eg if broker0 supports trailing stops but broker1 doesn't, they will show:
+
+{{{
+// true for broker 0
+bool b0hastrail = tl.RequestFeaturesList.Contains(MessageTypes.TRAILINGSTOP);
+// false for 2nd broker
+bool b1hastrail = tl2.RequestFeaturesList.Contains(MessageTypes.TRAILINGSTOP);
+}}}
+
+so you could remap the functionality of your application dynamically
+this way as well.   Eg if the broker didn't support using trailing
+stops, you could fall back to the TradeLink TrailTracker component.

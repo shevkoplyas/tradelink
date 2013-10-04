@@ -1,0 +1,45 @@
+#summary Measure performance of your strategy or application
+
+How to use :
+ # create a throughput tracker
+ # start it
+ # send objects through it that you want to get throughput for
+ # check how it's performing realtime
+ # stop it
+ # see final result
+
+Example :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  ThroughputTracker<Tick> _tickperf = new ThroughputTracker<Tick>();
+  ThroughputTracker<Order> _orderperf = new ThroughputTracker<Order>();
+
+  public override void Reset()
+  {
+      // ensure that when response is run, trackers are reset
+      _tickperf.Stop();
+      _tickperf.Start();
+      _orderperf.Stop();
+      _orderperf.Start();
+  }
+  public override void GotTick(Tick k)
+  {
+      // record performance
+      _tickperf.newItem(k);
+      // periodically notify
+      if (_tickperf.Count % 1000)
+      {
+          D("tick perf (t/s): "+_tickperf.Throughput);
+          D("order perf (o/s): "_orderperf.Throughput);
+      }
+      
+  }
+  public override void GotOrder(Order o)
+  {
+      // record order performance
+      _orderperf.newItem(o);
+  }
+}
+}}}

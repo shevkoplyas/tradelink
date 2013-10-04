@@ -1,0 +1,14 @@
+#summary ASP/Quotopia disconnects/re-connects/refreshes
+
+
+ASP and quotopia automatically monitor when ticks stop arriving for a broker.
+
+If ticks have not arrived for a given period of time, these programs will transparently attempt to reconnect.
+
+These messages can happen even if everything is fine, eg :
+ # if you are not subscribed to any symbols 
+ # if you are subscribed to symbols but they tick infrequently
+
+You can ignore these messages in general.   If you find them annoying :
+ * increase the broker reconnection time in asp/quotopia options until it goes away
+ * disable connection timeout checking entirely (broker reconnect timeout = 0)

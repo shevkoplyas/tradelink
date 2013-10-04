@@ -1,0 +1,30 @@
+#summary debugs
+
+debugs are just quick messages back from your program.
+
+in ASP they are displayed and logged to a file.
+
+In Gauntlet and Kadina they're displayed.
+
+To send a message :
+{{{
+bool firsttick = false;
+void GotTick(Tick t)
+{
+  if (!firsttick)
+  {
+    senddebug("hello world!!!");
+    firsttick = false;
+  }
+}
+}}}
+
+Here is the fast
+
+{{{
+override void GotTick(Tick k)
+{
+   D("hello...");
+   senddebug("world!");
+}
+}}}

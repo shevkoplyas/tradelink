@@ -1,0 +1,10 @@
+#summary Using realtick with tradelink
+
+=== Requirements ===
+ * [http://realtick.com/download.aspx install realtick]
+ * obtain realtick accountid, username and password
+
+=== Instructions ===
+ # Start realtick connector : start-> programs->tradelink connectors->realtick
+ # Login when prompted
+ # Start any tradelink application

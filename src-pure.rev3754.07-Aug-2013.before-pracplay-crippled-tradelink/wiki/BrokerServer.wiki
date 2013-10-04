@@ -1,0 +1,7 @@
+#summary Broker Server Introduction.
+
+BrokerServers allow communication between [BrokerSupport supported brokers.]
+
+Each broker has it's own server.
+
+If the market is closed, you can also use TradeLink Replay as a BrokerServer.

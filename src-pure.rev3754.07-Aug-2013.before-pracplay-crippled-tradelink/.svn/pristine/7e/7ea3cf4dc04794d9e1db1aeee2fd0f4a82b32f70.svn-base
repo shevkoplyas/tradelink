@@ -1,0 +1,10 @@
+#summary Tidbits about tradelink
+
+*TradeLink Value*
+<wiki:gadget url="http://www.ohloh.net/p/tradelink/widgets/project_cocomo.xml" height="250" width="500" border="0" />
+
+*TradeLink Lifespan*
+<wiki:gadget url="http://www.ohloh.net/p/tradelink/widgets/project_basic_stats.xml" width="500" height="300" border="0" />
+
+*TradeLink Language Makeup*
+<wiki:gadget url="http://www.ohloh.net/p/tradelink/widgets/project_languages.xml" width="500" height="200" border="0" />

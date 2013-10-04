@@ -1,0 +1,20 @@
+#summary Using Genesis with tradelink
+
+= Prerequisites =
+
+ # install TradeLink and BrokerServer
+ # username and password (obtained from broker)
+
+
+= Setup =
+
+ # start Genesis+BrokerServer from TradeLink programs group.
+ # enter login information, click login.
+ # Status should go to 'Connecting' and finally to 'Heartbeat' when connection completed.
+ # See messages if you are not able to login
+ # once you have logged in (green), you can start any of the tradelink apps.
+ # eg Start Quotopia, enter a symbol to see quotes.
+ # You can also supply login information in the Genesis.Login.txt file to Autologin
+
+= Issues =
+ # Adjust servers/ports in Genesis.Config.txt to match your Laser Setup

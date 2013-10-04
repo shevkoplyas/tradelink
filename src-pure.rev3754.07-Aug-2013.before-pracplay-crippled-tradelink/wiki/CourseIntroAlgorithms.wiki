@@ -1,0 +1,33 @@
+#summary Intro to TradeLink strategy programming
+
+Learn tradelink using Glean :
+ * Glean is free to use
+ * Glean doesn't require programming experience.  
+ * You can accomplish all the same things 100x faster.
+
+Glean is installed as a free add-on when you install tradelink.  Start->Programs->Tradelink -> Glean
+
+Here is a demo video showing how to get started with glean :
+
+<wiki:video url="http://www.youtube.com/watch?v=cDRj2VR_osI"/>
+
+See Also :
+  * [http://www.pracplay.com/landings/afterinstallingtradelink More Videos]
+  * [http://www.pracplay.com/products/glean/reference Glean Reference Guide]
+  * [http://community.tradelink.org Ask Community]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

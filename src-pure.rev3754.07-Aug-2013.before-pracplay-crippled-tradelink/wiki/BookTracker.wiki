@@ -1,0 +1,42 @@
+#summary Create books from ticks
+
+This feature is BETA
+
+Ticks are individual book entries.   
+
+To work with an entire book at once you need to use a book Tracker.
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+ // create book tracker
+ BookTracker bt = new BookTracker();
+ public override void GotTick(Tick k)
+ {
+   // give it ticks
+   bt.newTick(k);
+ }
+ void GotBook(string sym)
+ {
+   // get our book
+   Book book = bt[sym];
+   // get average price for buy side
+   decimal avgbuyer = Calc.Avg(book.bidprice);
+   // check for signal
+   if (avgbuyer>100)
+     sendorder(new BuyLimit(tick.symbol,avgbuyer+.5m,100));
+ }
+ // set how much of the book you want
+ public const BOOKLINES = 50;
+ // this method is called on startup
+ public override void Reset()
+ {
+   // request DOM data, otherwise you will only get top of book
+   sendmessage(MessageTypes.DOMREQUEST,Book.NewDOMRequest(BOOKLINES));
+ }
+ public MyResponse() 
+ {
+   bt.NewBook+=new DebugDelegate(GotBook);
+ }
+}
+}}}

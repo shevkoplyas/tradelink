@@ -1,0 +1,25 @@
+#summary Dealing with 'Broker Server not found'
+
+Many of the tradelink programs require a broker connector.   
+
+If you don't have one running, you'll get this error with programs that require it.
+
+Here are things to try :
+ # Ensure your broker is running.   Start->programs->tradelink connectors-> your broker.
+ #  [VcRedist Make sure vc Redistributables are installed]
+ # If you're still receiving an error, restart all programs in question (broker software, connector, any tradelink programs)
+ # If you are using Anvil and receiving message, see below :
+
+*Assent/Anvil*
+
+_ Anvil and Assent are registered trademarks of Assent LLC and used WITHOUT permission._
+
+_ This site is not affiliated with or endorsed by Assent. _
+
+
+  # Make sure you've started Anvil+BrokerServer
+  # Right click main bar, click toolbar
+  # On the right side there is an 'extensions' button with two gears.  Click it.
+  # Make sure AnvilServer is listed
+  # If it's not listed, right click, choose load.  Browse to \program files\tradelink\brokerserver\anvil_release_X_Y_Z and click AnvilServer.dll
+  # Finally, [VcRedist Make sure vc Redistributables are installed]

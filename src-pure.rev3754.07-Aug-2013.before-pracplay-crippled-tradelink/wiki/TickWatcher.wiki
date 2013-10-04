@@ -1,0 +1,58 @@
+#summary alert you if your feed drops
+
+If you're 100% automated, you need to know if your feed drops.
+
+TickWatcher will do this for you automatically.  
+
+If you choose, He will also alert you when your first tick arrives... this way you can be sure your system started trading each day.
+
+
+eg:
+
+{{{
+
+public class MyBox : ResponseTemplate
+{
+TickWatcher tw = new TickWatcher();
+public MyBox()
+{
+  // default is to alert if no ticks for 60seconds
+  tw.DefaultWait = 60;
+  // default is to fire the FirstTick event on first tick for each symbol
+  tw.FirstTick = true;
+  tw.Alert+=new SymDelegate(alert);
+  tw.FirstTick+= new SymDelegate(first);
+}
+
+void GotTick(Tick k)
+{
+  // watch the feed for whatever symbols you're tracking
+  tw.Watch(k);
+}
+void alert(Security s)
+{
+  Email.Send("mycellphone@mydomain.com","no ticks on "+s.Symbol,"");
+}
+
+void first(Security s)
+{
+  Email.Send("mycellphone@mydomain.com","first tick for "+s.Symbol,"");
+}
+   
+}
+
+}}}
+
+TickWatcher enforces your alert settings in two ways.  
+
+ # by checking when ticks arrive.  
+ # by checking on regular intervals.  (by default around every second or so, give or take)
+
+You can change the default interval in between checks, this paramter is set as # of milliseconds between checks in the constructor.   To change it to 5 seconds :
+
+{{{
+// timeout checks are performed worse-case every 5seconds or so
+TickWatcher _tw = new TickWatcher(5000);
+}}}
+
+Rest of the code from previous example would remain the same.

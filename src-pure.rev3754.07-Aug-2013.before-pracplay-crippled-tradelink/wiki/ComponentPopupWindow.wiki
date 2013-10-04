@@ -1,0 +1,6 @@
+#summary Pop-up alert to user
+
+{{{
+// popup alert and make it top-most window, pause execution until user closes alert
+TradeLink.AppKit.Popup.Alert("title","hello world!",true,true);
+}}}

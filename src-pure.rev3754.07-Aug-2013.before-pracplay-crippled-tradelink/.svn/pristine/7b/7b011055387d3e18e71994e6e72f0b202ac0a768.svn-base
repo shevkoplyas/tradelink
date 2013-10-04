@@ -1,0 +1,28 @@
+#summary Data Feeds and sources in TradeLink
+
+=== Live Feeds ===
+ * eSignal
+ * DTN IQFeed
+ * Nanex NxCore (BETA)
+ * [http://code.google.com/p/tradelink/wiki/ProviderFeatureMatrix Any broker except for DBFX]
+
+=== Automatic Historical Bars ===
+ * DTN
+ * Blackwood
+ * eSignal
+ * InteractiveBrokers
+ * MBTrading
+
+=== Historical Tick Data Import ===
+ * eSignal
+ * Multicharts
+ * TradeStation
+ * CQG
+ * QCollector
+ * Trading Physics (free)
+ * Daily data from google, yahoo, euronext (free)
+ * `*`Record tickdata from any Live Feed
+
+[http://code.google.com/p/tradelink/wiki/ProviderFeatureMatrix See here for supported Brokers]
+
+[TradeLinkFaq#Brokers See here for setup guides.]

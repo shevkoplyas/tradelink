@@ -1,0 +1,17 @@
+#summary Gauntlet Flow Chart
+
+Gauntlet now uses the HistSim engine.   Here's how it works:
+
+  # HistSim will load any tickfiles you provide
+  # you can also specify a filter if you want to include only certain dates/symbols/etc
+  # It then uses background threads to pre-cache all the ticks found in your tickfiles
+  # then it sorts these tick buffers to ensure ticks are played back in sequence.
+  # next sequential tick is executed against any pending orders you've placed with Simultion Broker  (HistSim.SimBroker)
+  # then the same tick is sent to any simulation clients via GotTick event
+ 
+
+Other mentionables :
+  * Gauntlet, Kadina and Replay all make use of the HistSim engine.
+  * HistSim can playback a single day or multiple days.
+  * It can play to the end of the simulation, or to a specific date/time.   
+  * it provides statistics both on progress as well as number of simulation fills

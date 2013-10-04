@@ -1,0 +1,15 @@
+#summary Guidelines to follow if you have been granted commit rights
+
+In general :
+ * It's better to send a 'diff' of your changes to the users list prior to committing, to get feedback
+ * Don't commit code that is known to be broken (eg test it first)
+ * Have unit tests for your code whenever possible, and commit those too
+
+Specifically : 
+ * When you are ready to commit, open an [http://code.google.com/p/tradelink/issues/list issue] that reflects the reason for your change
+ * In your commit, reference the issue # (so the history can be obtained)
+ * Mark the issue as 'verified' if you have confirmed that it works 
+ * mark the issue as 'fixed' if you have not confirmed it works
+ * When closing an issue with fixed or verified, cite the commit revision #s associated with your commit, (eg if it was release 1433, cite it as r1433 so it can be clicked on through the UI)
+
+

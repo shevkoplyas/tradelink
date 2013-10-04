@@ -1,0 +1,12 @@
+#summary Issue/Trouble ticket tracking interface
+
+Provides users a form for submitting bug reports, including a template and ability to attach a screenshot.
+
+Using control: 
+ # Just drag and drop the control into any form application.
+
+Using Window:
+{{{
+// ticket default parameters go here
+ATW.Report(...);
+}}}

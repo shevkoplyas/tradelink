@@ -1,0 +1,33 @@
+#summary Using TradeLink with Sterling
+
+=== Introduction ===
+
+_Sterling is a trademark of Sterling Technologies, who IS NOT affiliated with this site.  Sterling doesn't endorse !TradeLink or anything on this site._
+
+You can use TradeLink with Sterling or any broker who uses Sterling (Echo, CyberTrader, etc).   
+
+=== Details ===
+
+ # You must have an account, or have requested a demo account.  
+ # your account must be entitled to use the activeX api (otherwise no quotes will arrive and error sending orders)
+ # You must have installed Sterling Pro (or Echo Pro, or whatever version of the client you're supposed to use)
+ # ensure you are logged in with adminsitrator rights
+ # Install TradeLink
+ # Start sterling pro and login (as administrator)
+ # In Start->Programs->TradeLink Connectors, run SterlingPro (as administrator)
+ # sterlingpro window will start minimized
+ # for first time running, open sterling window
+ # right click and choose account
+ # enter your default sterling account name
+ # Run quotopia, ASP or whatever program you like
+ # PLEASE NOTE STERLING SYMBOLS ARE CASE SENSITIVE.  (goog is not a symbol on sterling but GOOG is.)
+
+=== Sterling Symbols ===
+ * Sterling symbols are *case sensitive*
+ * Options can be entered like UNDERLYING_OSICHAINID OPT (eg AAPL_111022P420000 OPT)
+ * chain ids can be seen in sterling view->options->chains window
+ * futures and fx can be traded like SYMBOL FUT or SYMBOL CASH
+
+=== Problems ===
+
+http://code.google.com/p/tradelink/wiki/TradeLinkFaq#First-Time_Problems

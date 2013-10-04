@@ -1,0 +1,28 @@
+#summary Issue List Guidelines
+
+If you have a problem or question with tradelink, [http://community.tradelink.org post it to the community forum].
+
+=== Dont Use The Issue Tab :) ===   
+
+If you open a formal issue without going to the users list, it will likely be closed.
+
+ALLOWED EXCEPTIONS
+ # submitting a tradelink crash report (a window will popup if an app crashes)
+ # somebody on the users list told you to open an issue
+ # when you're [TradeLinkBuild#Creating_Patches submitting a patch file]
+ # if you've contributed patches previously that were accepted
+ # if you're posting an enhancement request for voting, it's marked as an enhancement (not a defect) and copy the group
+
+If you do not meet these exceptions and you open an issue, it will likely be closed with a link to this page. [http://community.tradelink.org Instead, post to the community forum].
+
+=== Prioritization of Issue List ===
+
+TradeLink is an open source project.
+
+New features contributions and fixes happen at the behest of each project member doing the work.
+
+If you want to accelerate a given item :
+ * fix the item yourself or [http://www.pracplay.com/contact hire the work out] 
+ * [http://community.tradelink.org work with the community to solve and fix the problem]
+ * Pracplay will prioritize enhancements/issues that benefit/affect entire userbase
+ * If an issue enhancement was opened according to guidelines and more than 5 or 10% of the project members have starred it, Pracplay will increase priority

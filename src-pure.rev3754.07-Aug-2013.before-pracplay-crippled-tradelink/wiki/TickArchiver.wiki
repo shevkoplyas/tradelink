@@ -1,0 +1,17 @@
+#summary Save ticks for later retrieval.
+
+If you are using TradeLink ASP or  TradeLink Record, ticks are automatically saved for you.
+
+However if you want to save ticks on your own, here is how :
+
+{{{
+
+TickArchiver ta = new TickArchiver();
+
+void GotTick(Tick k)
+{
+  ta.newTick(k);
+}
+}}}
+
+TickArchiver is a [TradeLinkComponents TradeLinkComponent.]

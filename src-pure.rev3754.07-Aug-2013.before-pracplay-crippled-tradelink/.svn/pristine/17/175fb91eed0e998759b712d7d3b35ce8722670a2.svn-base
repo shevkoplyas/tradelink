@@ -1,0 +1,24 @@
+#summary Using components to quickly build full applications
+
+Here are the AppKitComponents :
+
+ * [ComponentAppTracker AppTracker] - Track application usage centrally
+ * [ComponentAssemblaTicket AssemblaTicket] - Automated bug reporting
+ * [ComponentAssemblaTicketWindow AssemblaTicketControl/AssemblaTicketWindow] - Interfaces for automated bug reporting
+ * [ComponentAuth Auth] - secure your applications
+ * [ComponentBookView BookControl/Bookview] - View Level2/Depth data for a symbol in realtime
+ * [ComponentChart Chart / ChartControl] - View bar charts that update in real-time, supports drawing and exporting of images
+ * [ComponentCrashReport CrashReport] - Automate bug reporting in TradeLink components
+ * [ComponentDebugWindow DebugControl / DebugWindow] - Provide users a pop-up window for debugging info in 2 lines of code
+ * [ComponentLog Log] - Log application data to a file with timestamping
+ * [ComponentLogViewer LogViewer] - Allow users to review past logs
+ * [ComponentPopupWindow Popup] - PopUp alerts to users
+ * [ComponentRunHelper RunHelper] - easily run simple tasks in the background
+ * [ComponentSafeBindingSource SafeBindingSource] - Accelerated grid performance
+ * [ComponentSendOrderTracker SendOrderTracker] - Automatically resend orders if certain resolveable errors occur, can auto subscribe symbols if required by broker in advance of sending
+ * [ComponentTicket Ticket] Order ticket for sending market/limit/stop orders.
+ * [ComponentTicketTracker TicketTracker] Open tickets/bugs/issues asychronously in background without slowing performance during live trading
+ * [ComponentTickFileFilterWindow TickFileFilterControl / TickFileFilterWindow] - Allows users to select tick data for running in simulations
+ * [ComponentTradeResults TradeResultsControl TradeResultsWindow] - Generate common statistics (MaxDD, Winners, Losers, MaxProfit, etc,etc) from lists of Trades
+ * [ComponentVersions Versions] - Check for latest verion of given software
+ 

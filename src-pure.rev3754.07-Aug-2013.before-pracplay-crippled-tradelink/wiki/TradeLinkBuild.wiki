@@ -1,0 +1,98 @@
+#summary Instructions on how to contribute to project
+
+== Notes ==
+ * c# solution has been tested with Visual C# express (free)
+ * c++ solution must be used with Visual 2005 Professional SP1 (non-free, requires MFC)
+
+<wiki:toc max_depth="2" />
+
+== Join the group ==
+
+ # Please join the [http://groups.google.com/group/tradelink-users users group].
+ # If you plan to actively contribute, you may wish to join the [http://groups.google.com/group/tradelink-commits commit notifications group]
+ # let us know how you would like to help.  Or if you're not sure, let us know what you're interested in, experienced in.
+ # If you have an idea for a specific feature...
+   # EmailUsersGroup to get feedback
+   # do your coding, make sure code builds
+   # also make sure the TradeLinkTests project builds and unit tests pass
+   # If code does not build, fix errors
+   # If unit tests fail, [TradeLinkDebug debug the tests] and/or email the contribute group
+   # produce a patch for your changes (in TortoiseSVN, right click in trunk directory for project and choose 'create patch')
+   # email your patch to tradelink-users@googlegroups.com so we can try it out too
+   # if everything looks good, we'll commit your patch
+
+
+== Fetch Source Code ==
+
+ # [http://tortoisesvn.net/downloads install tortoise svn] (or your favorite svn tool)
+ # create folder for tradelink source (eg Desktop\TLS)
+ # right click in this folder, from svn menu choose 'checkout'
+ # checkout from path : https://tradelink.googlecode.com/svn/trunk/ as tradelink-read-only
+ # your files should checkout/download
+ # [http://code.google.com/p/tradelink/source/checkout see here for more information]
+
+== Build Source Code ==
+
+You will likely experience errors in building code.  [https://code.google.com/p/tradelink/wiki/TradeLinkFaq#First-Time_Problems These are simple to resolve], but [https://code.google.com/p/tradelink/downloads/list if you can't fix the errors just use the installer], it's faster and you can still do 95% of the same things and 99.99% of what most people need to do.
+
+ # Install [http://www.microsoft.com/net/download .NET Framework 4]
+ # [CsharpIde install an IDE]
+ # Open your IDE, select file->open project, browse to where you saved the source
+ # Open the TradeLinkSuite.sln solution file from source code location.
+ # In IDE, choose build solution (usually under 'project' or 'build' menu)
+
+== Build Errors ==
+
+[https://code.google.com/p/tradelink/wiki/TradeLinkFaq#First-Time_Problems  See here for solutions to common build errors.]
+
+== C++ tradelink.org aka Broker Servers ==
+
+Requirements :
+ * tradelink.org c++ solution requires MFC libraries in Visual Studio Professional (2010)
+ * tradelink.org source code for c++ is found in trunk/BrokerServers (see instructions above on obtaining tradelink source code)
+
+Building and Installing :
+ # install visual studio 2010 professional
+ # build brokerservers\brokerserver.sln file in release mode
+ # add empty file install\_includebs.txt to trunk path
+ # run BuildInstaller.bat as normal to create install with brokerservers included
+
+== Roll Installer == 
+ 
+ # [http://nsis.sourceforge.net Make sure your have the NullSoft Installer]
+ # Open an explorer window where you downloaded the TradeLink source.
+ # Find the Build Installer.bat file in root directory
+ # Run the Build Installer.bat file (by doubleclicking it)
+ # This will produce an updated Trade Link Suite.exe
+ # Run it to test installing all the applets.  
+
+== Adding files ==
+
+If you're adding files:
+   # Edit Trade Link.nsi to make sure these files are compiled into the installer
+   # Test by right-clicking Trade Link.nsi, choose Compile.  
+   # Should compile without errors
+   # uninstall existing copy, install your version
+   # should run without errors
+   # make sure you 'svn add' them (don't add recreateable stuff like bin/obj folders)
+   # once everything is working, commit to svn
+
+
+== Creating Patches ==
+
+_Before creating a patch, you may want to review [https://groups.google.com/forum/?noredirect=&fromgroups=#!msg/tradelink-users/usla9ddfWSo/2qjnGSF7Uh0J patch approval suggestions]'
+
+To create and submit a patch :
+  # make sure you have followed [http://code.google.com/p/tradelink/wiki/TradeLinkBuild#Fetch+Build_Code instructions above to fetch and build code using tortoise svn]
+  # ensure your patch has unit test :
+    * located in project TradeLinkTests for c# changes or BrokersServers\TestTradeLibFast for c++ changes 
+    * if patch is a bug or a feature, your test should break before patch and pass afterwords
+    * your patch should not fail any existing unit tests
+  # ensure that your patch is generally confined to a clearly defined change, so it's easier to review.  if you submit multiple changes, use multiple patches.
+  # then to create the patch
+  # right click in the root folder of your checked out project (or select the specific changed files to generate patch from), then
+  # from tortoise svn menu, choose 'create patch'
+  # enter name for patch
+  # [http://code.google.com/p/tradelink/issues/list go to tradelink issues section], open an issue and add your patch as an attachment
+  # include a description of what your patch is addressing, how it works and why you created it
+  # if you have questions about this, ask the community at http://tradelink.org

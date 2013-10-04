@@ -1,0 +1,25 @@
+#summary Check for latest versions of your program
+
+Requirements :
+ * Your program needs to be downloadable from a url.
+ * Your installer name must be located via the URL
+ * Your installer must stamp current version number in registry at Software\Microsoft\Windows\CurrentVersion\Uninstall\PROGRAMNAME\Version
+ * The installer name on website must contain a version number that always increments.
+
+Example
+{{{
+public partial class MyProg : Form
+{
+  const string PROGRAM = "MyProg";
+  const string PROGURL = "http://mysite.com/files/";
+  public MyProg()
+  {
+     InitializeComponent();
+     // will check for new versions
+     // if found will display a popup to user with URL they can click to download
+     Versions.UpgradeAlert(PROGRAM, PROGURL);
+    
+  }
+}
+
+}}}

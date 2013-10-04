@@ -1,0 +1,47 @@
+#summary Draw on kadina's chart
+
+This command draws text labels at a specific time and price.
+
+{{{
+
+// ...
+public override void GotOrder(Order o)
+{
+   // draw an acknolwedged order on the screen
+   sendchartlabel(o.price,o.time,o.ToString());
+}
+
+}}}
+
+If you omit the text, this command draws a line between the point provided and the previous point without a label.    Labelless points can be used to draw line plots.
+
+{{{
+
+// ...
+public override void GotTick(Tick k)
+{
+   if (!k.isTrade) return;
+   // draw a line 1% above trading price
+   sendchartlabel(k.trade*1.01m,k.time);
+}
+}}}
+
+Multiple lines can be drawn by specifying a different color for each line.
+
+{{{
+
+// ...
+public override void GotTick(Tick k)
+{
+   if (!k.isTrade) return;
+   // draw a line 1% above trading price
+   sendchartlabel(k.trade*1.01m,k.time,Color.Orange);
+   // draw a line 1% below trading price
+   sendchartlabel(k.trade*.99m,k.time,Color.Pink);
+}
+}}}
+
+This command has no effect in gauntlet or ASP.
+
+
+[http://code.google.com/p/tradelink/source/browse/trunk/Responses/SMAResponse.cs  See the SMA response example for how to use both of these charting features.]

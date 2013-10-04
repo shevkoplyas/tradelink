@@ -1,0 +1,23 @@
+#summary Get symbol screening data from finviz
+
+example of using
+{{{
+using TradeLink.Research;
+using TradeLink.API;
+using TradeLink.Common;
+
+public class MyResponse : ResponseTemplate
+{
+   GenericTracker<Screener> MARKET = new GenericTracker<Screener>();
+   public void Reset()
+   {
+       // get screen for entire market and display errors
+       MARKET = Screener.fetchscreen(D);
+       // access a particular symbol
+       Screener s = MARKET["IBM"];
+       D(s.symbol+" name: "+s.company+" sector: "+s.sector+" industry: "+s.industry);
+       if ((s.pctchange>.03%) && (s.pe<10))
+          sendorder(new BuyLimit(s.symbol,100,s.price+1));
+   }
+}
+}}}

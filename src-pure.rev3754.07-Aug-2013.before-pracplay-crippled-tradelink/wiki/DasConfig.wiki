@@ -1,0 +1,15 @@
+#summary Direct-Access-Software DAS configuration
+
+=== Pre-requisites ===
+
+ #  Must certify with DAS INC by filling out the following form and submitting to the Support Desk at support@dastrader.com  
+ #   In the certification questionnaire, please Indicate that the API is being by Tradelink in Item 3-1.
+ # Must get an authorized login credential from DAS or any authorized reseller of DAS Trader. You may subscribe for a training user from DAS website under the Subscribe page.
+ 
+
+
+=== Instructions ===
+ * start DAS connector : start->programs->tradelink connectors -> DAS
+ * enter login information
+ * click login
+ * [TradeLink you should be able to do any of the live tradelink quickstarts with DAS]

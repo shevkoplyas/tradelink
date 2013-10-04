@@ -1,0 +1,21 @@
+#summary Keep track of bid/ask and last for many symbols.
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+  TickTracker kt = new TickTracker();
+  void GotTick(Tick k)
+  {
+      kt.newTick(k);
+      // eg, wait for full bid/ask last before starting rules
+      if (!kt.HasAll(k.symbol)) return;
+      // now we can access bid/ask everything else
+      if (kt[k.symbol].bid==kt[k.symbol].trade) 
+         senddebug("hit bid!");
+   
+  }
+
+}
+}}}

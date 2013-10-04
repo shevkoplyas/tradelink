@@ -1,0 +1,53 @@
+#summary 2017 upgrade notes
+
+If you are building your pre-2017 project against 2017 or later, you will likely receive errors.
+
+This is because we made many small changes to method names to support Visual Basic and other CLS-compliant languages in .NET.
+
+If you are building from-scratch projects or building from the source code provided with tradelink, you should not have any issues and can ignore this document.
+
+Here are major changes/errors and how to fix in your project :
+
+<wiki:toc max_depth="3" />
+
+=== UIntDelegate could not be found ===
+
+unsigned integers are not CLS compliant.
+
+Rename all instances of UintDelegate to LongDelegate and you should be fine.
+
+edit->replace->replace all
+
+=== no overload for SOME_METHOD matches SOME_DELEGATE ===
+
+unsigned integers were removed.   uints were used for order ids almost exclusively, and have been replaced with longs (int64s in .net).
+
+rename all uint to long and these should go away.
+
+edit->replace->replace all
+
+=== Response does not contain a definition for Send_whatever ===
+
+CLS compliance doesn't allow for events and methods to have similiar names.
+
+do following renames :
+
+|| match condition (on case) || replace with ||
+||SendOrder || SendOrderEvent ||
+||SendCancel || SendCancelEvent ||
+||SendDebug || SendDebugEvent ||
+||SendIndicators || SendIndicatorsEvent ||
+||SendMessage || SendMessageEvent ||
+||SendBasket || SendBasketEvent ||
+
+edit->replace->replace all (match case)
+
+=== Broker does not contain a definition for sendOrder ===
+
+broker now has single SendOrder which corresponds to Order delegate.
+
+If you need to get a return message indicating an error from the order, call SendOrderStatus.
+
+if you need to submit account name, call SendOrderAccount.
+
+edit->replace->replace all (match case)

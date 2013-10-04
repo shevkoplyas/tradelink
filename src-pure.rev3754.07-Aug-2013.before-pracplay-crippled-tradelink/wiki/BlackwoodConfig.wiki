@@ -1,0 +1,17 @@
+#summary Trade with Blackwood
+
+Steps :
+ # Install TradeLink
+ # Start Blackwood icon from TradeLink Programs group under start menu
+ # Enter server ip address provided by broker
+ # enter username and password from broker
+ # press ok
+ # if successful, background should turn green
+ # if background is red, click exclamation point to see error message (verify login information)
+ # When green, open quotopia or any other tradelink program you wish to use
+ # at this point, you may get quotes, send/cancel orders... whatever.
+
+*Note* Blackwood support is beta.  We need help making sure it's stable, so if you have an account and can help test, please email users group._ 
+
+[EmailUsersGroup Please report any problems you have to tradelink-users@googlegroups.com]
+

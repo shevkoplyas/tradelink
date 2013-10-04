@@ -1,0 +1,39 @@
+#summary Tips for solving problems and collecting problem information
+
+<wiki:toc max_depth="3" />
+
+
+=== Introduction ===
+
+Most problems can be solved without using the debugger.  
+
+See the [TroubleShooting troubleshooting section first.]  Then try the debugger.
+
+Since tradelink is open source, it's easy to debug problems.
+
+
+=== TradeLink Application Debugging ===
+
+ # [http://code.google.com/p/tradelink/wiki/TradeLinkBuild#Fetch_Source_Code Obtain source code]
+ # [CSharpIde install an ide if you haven't already]
+ # Open the TradeLinkSuite.sln file in c# express File->Open Solution
+ # On project->Configuration Manager menu, change the solution from Release to Debug build
+ # Build the project in debug mode
+ # Close the solution
+ # Open your application project/solution  (eg MyApp.sln).   
+ # Switch to debug mode in same way as above and build project.
+ # Set a breakpoint in your application code
+ # Breakpoints determine where program will stop executing so you can examine output
+ # You can set or unset a breakpoint by clicking on line number next to a line of code
+ # when setting a breakpoint, a red dot will appear.  If you do it again, it should disappear
+ # Once you have set breakpoint, right click on Application and choose right click -> debug
+ # your application will start
+ # When your breakpoint is hit, execution will stop and you can inspect variables inside your program
+ # To continue executing, hit F5.   You can also remove or set new breakpoints while debugging
+
+
+=== Tips ===
+
+ * You can set breakpoints in your code or in tradelink code (or both), depending on what you wish to inspect
+ * You can add a variable to watch list by right clicking it and choosing add watch.   
+ * If you wish to debug common libraries, you should also add TradeLinkAPI TradeLinkCommon and potentially TradeLinkAppKit or TradeLinkResearch depending on what you're testing

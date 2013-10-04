@@ -1,0 +1,34 @@
+#summary Using indicators
+
+Indicators can be used to examine what your strategy is doing.
+
+You must set the name of each indicator you might be using.
+
+Then whenever you update the Indicator values, you must update them all.
+
+Indicator values must occur in the same sequence as the names when they were created.
+
+{{{
+public class MyBox : Response
+{
+  public MyBox()
+  {
+    Indicators = new string[] { "Time","Average", "StdDev" };
+  }
+
+  // made up function
+  StatPack stat = new StatPack();
+
+  void GotTick(Tick tick)
+  {
+    if (!tick.isTrade) return;  /// only interested in trades
+    stat.Update(tick.trade);
+    // send statistical values back to user as indicators
+    SendIndicators(new object[] { tick.time, stat.Average, stat.StdDev } );
+  }
+}}}  
+
+Things to be aware of :
+  * Gauntlet can write indicator values to a CSV file for importing into Excel or R
+  * Kadina displays indicators in the indicators tab
+  * Whatever objects you pass to SendIndicators must have a ToString() method.

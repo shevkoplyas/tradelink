@@ -1,0 +1,16 @@
+#summary how to record a screen cast
+
+=== SCREENR ===
+
+ # [http://screenr.com/ go to the site]
+ # click red record button
+ # java application should start up
+ # select desired preferences (eg sound, screensize)
+ # if recording sound, ensure your microphone is connected
+ # click 'record' - keep your recording under 5 minutes
+ # click stop when done
+ # you will have to create a twitter account at the end if you have not used before
+ # click 'do not tweet this screencast'
+ # you should receive a link to the screencast
+ # provide this link back to your support resource
+

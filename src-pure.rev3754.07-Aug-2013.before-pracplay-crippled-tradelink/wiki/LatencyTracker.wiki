@@ -1,0 +1,92 @@
+#summary Track Message Latency
+
+LatencyTracker allows you to measure the time elapsed between various events.
+
+Start->Finish event time measured include :
+
+ # Orders->Order Confirmation
+ # Orders->Fill
+ # Cancels->Cancel confirmation
+
+You can use these things to determine :
+  
+ * How far you are away from exchange
+ * How slow or fast your broker is
+ * How liquid or illiquid symbols are inrelation to each other, for various order types
+ * and more
+
+Latency is measured in millseconds.   So a latency of 1.5 would be 1.5 millseconds.
+
+You can use latency tracker in two ways :
+ # send events when latency is measured so you can respond
+ # record events to a file for later analysis
+
+{{{
+
+public class MyResponse : ResponseTemplate
+{
+LatencyTracker lt = new LatencyTracker();
+public MyResponse()
+{
+   // send latency measurements here
+   lt.SendLatency+=new LatencyDelegate(gotlatency);
+   // take orders sent through tracker and route back to broker
+   lt.SendOrder+=new OrderDelegate(base.sendorder);
+   // do same for cancels
+   lt.SendCancel+=new UintDelegate(base.sendcancel);
+}
+void gotlatency(MessageTypes type, uint id, double latency)
+{
+   // alert on slow latency
+   if (latency>20)
+      senddebug("Latency detected");
+}
+bool oneorder = false;
+public override void GotTick(Tick k)
+{
+   if (!oneorder)
+   {
+     oneorder = true;
+     sendorder(new BuyLimit(k.symbol,k.trade*2,100));
+   }
+}
+public override void sendorder(Order o)
+{
+  // route orders through the tracker first
+  lt.sendorder(o);
+}
+public override void sendcancel(uint id)
+{
+  // route cancels through tracker
+  lt.sendcancel(id);
+}
+public override void GotOrder(Order o)
+{
+  // send ack through tracker to generate measurement
+  lt.GotOrder(o);
+}
+public override void GotFill(Trade fill)
+{
+  // get measreument
+  lt.Gotfill(fill);
+}
+public override void GotOrderCancel(uint id)
+{
+  // get measurement
+  lt.GotCancel(id);
+}
+}}}
+
+Handling the SendLatency event is optional.   You can also simply generate a report:
+
+http://tradelink.googlecode.com/files/LatencyTrackerReportExcel.jpg
+
+You can see the above example has 128ms (milliseconds) of average latency for order acknowledgement.    If you were right next to the exchange, you should generally get <10ms.
+
+To make such a report,  you would do everything as above, except construct the object like so:
+
+{{{
+LatencyTracker = new LatencyTracker("c:\\users\\johndoe\\desktop\\Measurements.csv");
+}}}
+
+[http://tradelink.googlecode.com/files/LatencyHelper.20100125.csv Here is a raw copy of the report produced]

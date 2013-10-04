@@ -1,0 +1,3 @@
+#summary TradeLink for Easy Language
+
+[http://www.pracplay.com/products/bridge Run easylanguage inside of tradestation, execute elsewhere]

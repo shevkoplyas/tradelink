@@ -1,0 +1,14 @@
+#summary Getting Started
+
+  # start your broker software
+  # start the corresponding BrokerServer
+  # start ASP
+  # click response library
+  # browse to your response library (DLL), choose ok
+  # select desired response from the drop-down
+  # enter symbol to trade on this response
+    * if your response trades pairs or spreads, enter multiple symbols with comma (GOOG,YHOO)
+  # click trade
+  # your response will trade
+
+

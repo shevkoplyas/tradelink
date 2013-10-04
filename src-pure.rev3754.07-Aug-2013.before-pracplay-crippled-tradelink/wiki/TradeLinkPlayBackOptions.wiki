@@ -1,0 +1,20 @@
+#summary Tick Playback Comparison
+
+|| Feature || Kadina || Gauntlet || Replay ||
+|| Designed for trading applications requiring user input || || || X ||
+|| Designed for automated strategy trading || X || X || ||
+|| Plays back each tick and takes orders at each tick || X || X || X ||
+|| Allows playback of single tickfile at a time || X || X || ||
+|| Playback an entire days worth of symbols || || X || X ||
+|| Plays back all symbols in sequence with each other ||X || X || X||
+|| Supports level 1 and level2 data if present || X || X || X||
+|| Plays back many symbols at once || || X || X ||
+|| Plays back multiple days of symbols || || X || ||
+|| Maximum speed tick playback available || || X || ||
+|| Supports pairs and basket trading || X ||X || X ||
+|| Runs without other TLS applications || X || X || ||
+|| Supports per-tick output of your strategies indicators || X || X ||  ||
+|| Supports real-time inspection of strategy and results || X || || ||
+|| Allows importing of results into Excel or R || || X || ||
+|| Quotopia - compatible || || || X||
+|| ASP compatible || || || X ||

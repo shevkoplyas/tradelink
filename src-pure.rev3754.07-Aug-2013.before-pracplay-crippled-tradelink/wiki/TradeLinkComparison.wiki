@@ -1,0 +1,35 @@
+#summary Comparison to other trading solutions
+
+|| Feature || TradeLink || TradeStation || NinjaTrader ||
+|| Open source || Yes || No || No ||
+|| Allows platform customization || Yes || No || No ||
+|| Unlimited integration to present and future trading apps || Yes || No || No ||
+|| Free to use || Yes || No || Yes ||
+|| Free to trade with  (including commissions) || Yes || No || No ||
+|| Potential for future price increases || None || Yes || Yes ||
+|| Supports retail trading accounts || Yes || Yes || Yes ||
+|| Supports proprietary/professional trading || Yes || No || No ||
+|| Bar backtesting and trading || Yes || Yes || Yes ||
+|| Includes hundreds of built-in indicators || Yes || Yes || Yes ||
+|| Super-fast tick-based backtesting || Yes || No || No ||
+|| Portfolio based backtesting (multi instrument dynamic) || Yes || Yes || No ||
+|| Portfolio based backtesting (single instrument batch) || Yes || Yes || Yes ||
+|| Tick and DOM trading || Yes || No || No ||
+|| High Frequency Trading || Yes || No || No ||
+|| Intra day Trading || Yes || Yes || Yes ||
+|| Daily Trading || Yes || Yes || Yes ||
+|| Black box trading || Yes || Yes || Yes ||
+|| Grey box trading || Yes || No || Yes ||
+|| Example strategies included || Yes || Yes || Yes ||
+|| Tutorials provided || Yes || Yes || Yes ||
+|| Create strategies w/out programming || Yes || No || Limited ||
+|| Support for historical data || Yes || No  || Yes ||
+|| Includes Historical data || Limited || Yes || No ||
+|| Live data feeds included || No || Yes || No ||
+|| Broker services included || No || Yes || No ||
+|| Live data feeds supported || 15 + || 1 || Multiple ||
+|| Brokers supported || 15 + || 1 || Multiple ||
+|| Broker neutral (change brokers w/out changing code) || Yes || No || Yes ||
+|| Use with any broker of your choice || Yes || No || Yes ||
+|| Build applications ontop of platform || Yes || No || No ||
+|| Supports multiple application and strategy languages || Yes || No || No ||

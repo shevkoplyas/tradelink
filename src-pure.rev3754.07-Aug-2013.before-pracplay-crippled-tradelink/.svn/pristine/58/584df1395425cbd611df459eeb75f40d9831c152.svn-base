@@ -1,0 +1,11 @@
+#summary BigTrades Summary
+
+Big Trades is a sample box that comes with tradelink, which demostrates grey-box functionality.
+
+It displays a list of the top ten biggest trades occuring in a stock, the time and exchange they occurated at/on.
+
+Big Trades is included in the default install of TradeLink, in the Box Examples.dll file.  
+
+You can download the source code from the files section of this website if you want to customize it for your own needs.
+
+[http://code.google.com/p/tradelink/source/browse/trunk/Box-Examples/BigTrades.cs  You can also checkout the source code live online to see how simple it is.]

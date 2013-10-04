@@ -1,0 +1,122 @@
+#summary How to get Tick Data for tradelink
+
+<wiki:toc max_depth="3" />
+
+
+== Sample Data ==
+  # Unless you checked it, this is installed with tradelink.   start->programs->tradelink->tickdata.   Should have 5 tick files.
+  # to reinstall it go to downloads and install Install-TickData-20070926.exe
+  # download from tradelink.org
+
+== Record Data ==
+
+You can record data either automatically through ASP or manually by providing lists of symbols.
+
+
+=== Manual record (w/out strategy) ===
+ 
+  # start broker server for your broker (or connector for your feed).  start->programs->tradelink connectors->your broker/feed
+  # start->programs->tradelink->Record
+  # right click, choose edit symbols
+  # add symbols to record
+  # it will record tick data as it arrives until you close record
+  # note that you should not run record on same symbols as ASP with save ticks selected in asp.
+
+=== Automatic record in ASP  (w/strategy) ===
+
+  # Start a broker server (eg TWSServer for IB, SterServer for Echo, etc)
+  # Start ASP.  Start->Programs->TradeLink->ASP
+  # Click L to load a response library (eg \program files\tradelink\Responses.dll, or your own response library)
+  # select a response to trade from drop down list
+  # in ASP options window ('?' button), Make sure the 'archive ticks' button is checked (this is the default).
+  # ASP will automatically save tick data for later replay.
+
+== Importing ==
+
+You can import tick or bar data from many sources using TikConverter.   See below for source specific information.   
+
+If you have a specific source listed in TikConverter, choose this in tikconvert.  eg
+
+ # start -> programs -> tradelink -> tikconverter
+ # choose your source
+ # enter any required information
+ # click convert
+ # your tickdata should be available for use.  
+ # to see tickdata, choose start -> programs -> tradelink -> tickdata 
+
+If your source is not listed but you have a CSV file, try Generic CSV.  You will have to match up your CSV fields with tradelink supported formats.   
+
+If your data doesn't match any pre-built converter, you will have to do one of :
+  # change your data to match an existing format
+  # build your own converter
+
+=== Generic CSV ===
+
+CSV files must have a header to be used with this converter.   Each CSV can only have one header and the entire CSV must be consistent with it's header.   You can select multiple files to import at once but they all must be of the same type and have same header.
+
+ # start tikconverter from tradelink programs group
+ # choose generic csv, click convert
+ # select your CSV file
+ # genericcsv will try to autodetect your type of import (bar, tick level1, ticklevel2, etc).   change 'type' if this is incorrect
+ # your CSV columns are on the left
+ # tradelink fields (for the selected type) are on the right
+ # align the left to match up with the tradelink fields you wish to import to
+ # a sample import (if successful) will appear on far right as you update your alignments
+ # you can duplicate columns if your data a single format rather than two that tradelink uses (eg to match one date field to date and time in tradelink)
+ # you can add a column of a fixed amount if your data is lacking a tradelink field (eg trade size, bid size, etc)
+
+When ready to perform the import, click import.
+
+=== tradestation import (CSV) ===
+  # your data must be in a specific format to use this converter
+  # if you data is not in this format, you can use excel or google spreadsheets to move the columns and change formats as needed.
+  # export tradestation data as CSV with exactly the following columns in this order
+    * DATE = 0
+    * TIME = 1
+    * OPEN = 2
+    * HIGH = 3
+    * LOW = 4
+    * CLOSE = 5
+    * UP = 6
+    * DOWN = 7
+  # use the included TikConverter tool and select TradeStation as the source
+
+=== Cqg purchase ===
+  # purchase T&S data online from [http://cqgdatafactory.com CQG] for $6 per symbol month
+  # Make sure to purchase the comma-sepertaed format.   Other defaults are fine.
+  # use the included TikConverter tool to convert your files.
+
+=== eSignal download ===
+
+  # in esignal, goto Tools->EFS->Download tick data
+  # enter a symbol, date and number of days to obtain
+  # click save, save somewhere
+  # Use TikConverter in TradeLink programs group to convert this data, choose eSignal as source format.
+
+
+
+=== Importing from unknown source (eg CSV, etc) ===
+
+  * put your data into same format as one of the existing import types
+  * use tik converter to import it
+  * if you have bid or ask data, you will want to copy [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkCommon/eSigTick.cs the esignal format]
+  * if you only have trade data you can also use esignal or cqg
+  * if you have OHLC bar data, most of the formats support this
+  * you can use excel to change the order of columns in your data, then save as a csv file to prepare for import
+  * here is an [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkTests/FTI20070926.EPF example epf file] to give you ideas
+
+=== Importing daily data ===
+ * Google
+ * Yahoo
+ * Euronext
+
+Use TikConverter, select appropriate source and symbols.
+
+=== Other supported sources by TikConverter ===
+ * tradestation
+ * esignal
+ * cqg
+ * [http://www.tradingphysics.com/Feeds/DownloadHistoricalTimeAndSales.aspx TradingPhysics]
+ * multicharts
+ * q collector
+ * euronext

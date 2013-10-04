@@ -1,0 +1,24 @@
+#summary Using Lightspeed with TradeLink
+
+=== Desktop ===
+
+_This connector is presently BETA_
+
+[EmailUsersGroup Please report problems you have to the issues tab of this site, or the users group.]
+
+ # ensure you have entitlements in your account to use desktop api
+ # [TradeLink install tradelink]
+ # start lightspeed
+ # if you have entitlements, you should have 'graybox' option in your view menu
+ # go to view->graybox
+ # right click graybox window, choose settings
+ # click browse to browse for extension dll
+ # navigate to \program files\lightspeed
+ # click lightspeedserver.dll
+ # choose ok
+ # click check box 'load whenever lightspeed is started'
+ # press enter or choose ok
+ # click 'start' next to 'lightspeed server' icon
+ # you should see a message in the graybox window that says the server is started.
+ # you can now use any tradelink application
+ # for a quick test, [http://code.google.com/p/tradelink/wiki/TradeLink#Live_Discretionary_Trading try the discretionary trading quickstart]

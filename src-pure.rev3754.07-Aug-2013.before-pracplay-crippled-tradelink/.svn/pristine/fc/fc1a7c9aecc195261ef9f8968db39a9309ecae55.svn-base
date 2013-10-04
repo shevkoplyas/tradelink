@@ -1,0 +1,20 @@
+#summary GrayBox setup
+
+Prerequisites
+
+
+ * Get a valid Graybox login information (with Desktop API entitlement) from Hold Brothers Sales Team (visit http://www.hold.com or email: sales@hold.com ). 
+ * Install Graybox which can be obtained from http://support.hold.com/
+ * Make sure that your Graybox runs standalone without any issues before attempting to run TradeLink Connector. If you experience any issues, please email the Graybox Helpdesk – helpdesk@hold.com
+ * If you need more details about the Graybox Desktop API, visit http://support.hold.com/api
+
+Setup
+
+ # Start Graybox Connector using Start->All Programs->Tradelink connectors-> GrayboxTLServer
+ # Enter login information, and click on Connect.
+ # It should connect to Graybox if it already running. (Note: it will lauch Graybox if it is not running. You need to give username and password again ).
+ # Status should change from 'Connecting' to 'Heartbeat' when connection is completed.
+ # once you have logged in, you can start any of the TradeLink apps.
+
+ 
+If you face any further issues, please email SupportAPI@hold.com

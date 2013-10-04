@@ -1,0 +1,12 @@
+#summary If you have problems recording tickdata using ASP or Record
+
+Verification :
+ #  check start->programs->tradelink->tick data
+ # You should be able to double-click file and see data in time and sales
+
+Problem Checklist :
+ # Ensure that you have added symbols to the SymbolList in record or your response in ASP (right click)
+ # Ensure that All users have security permissions to the TickData folder
+ # On windows vista, ensure UAC is disabled
+
+Note that these steps pertain only to recording live tickdata, not to importing historical data from other sources.

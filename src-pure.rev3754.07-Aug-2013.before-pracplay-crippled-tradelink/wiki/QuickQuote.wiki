@@ -1,0 +1,18 @@
+#summary Get screening-like information from yahoo
+
+Example :
+
+{{{
+using TradeLink.Research;
+
+public class MyResponse : ResponseTemplate
+{
+   public override void Reset()
+   {
+         QuickQuick qq = QuickQuote.Fetch("IBM");
+         D(qq.symbol+" company: "+qq.company);
+         if (qq.marketcap>100000)
+            sendorder(new BuyLimit(qq.symbol,100,qq.close+1));
+   }
+}
+}}}

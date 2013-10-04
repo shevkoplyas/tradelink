@@ -1,0 +1,31 @@
+#summary get random tick data
+
+Random tickdata can be useful for many things :
+ * testing logic against never experienced events
+ * out-of-sample robustness testing of performance
+ * anything where tick data is needed but you don't want to go to trouble of packagnig up [large] tickfiles
+
+example of how to use
+{{{
+using TradeLink.API;
+using TradeLink.Research;
+
+public class Program
+{
+   public static void Main(string[] args)
+   {
+      Response r = new MyResponse();
+      // get random data
+      Tick[] ks = RandomTicks.GenerateSymbol("TST",1000);
+      // feed to response
+      foreach (Tick k in ks)
+         r.GotTick(k);
+
+   }
+}
+
+public class MyResponse : ResponseTemplate
+{
+}
+
+}}}

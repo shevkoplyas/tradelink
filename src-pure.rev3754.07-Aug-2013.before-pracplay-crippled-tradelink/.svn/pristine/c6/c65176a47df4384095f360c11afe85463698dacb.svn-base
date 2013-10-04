@@ -1,0 +1,17 @@
+#summary how to find log files in tradelink
+
+=== TradeLink Logs ===
+
+ # Start->Programs->TradeLink->Logs
+ # locate the folder that corresponds to the program in question
+ # eg, ASP for ASP, ServerSterling for SterServer, etc
+ # inside this folder you will see a text log file for every day the program has run
+
+=== Sterling-Side logs ===
+ 
+sterling does not save it's own log files by default.   You must start them at startup of sterling pro.
+
+  # start sterling pro
+  # Windows -> Activity log and Notification Log. 
+  # By doing that, two extra windows open up.  
+  # you can copy/paste this data to a text file in notepad (start->programs->accessories->notepad)

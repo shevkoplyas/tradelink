@@ -1,0 +1,63 @@
+#summary Warden Use Instructions
+
+
+=== Pre-requisites ===
+ * Amazon AWS s3 account (~$1/month)
+    # [http://aws.amazon.com/s3/ go to s3 website]
+    # click sign-up, all you need is the s3 service (you can uncheck everything else)
+    # choose defaults
+    # when complete, take note of AWS id and AWS access key
+
+
+=== Setup ===
+
+ # create authentication page
+    # start -> run -> notepad.exe
+    # file -> save as -> desktop\myprogram_users.txt
+ # [https://console.aws.amazon.com/s3/home?# open amazon s3 aws console]
+    # identify bucket to hold auth pages (eg security.myname)
+    # name must be unique amongst all aws users
+    # click 'create bucket' to create new bucket, choose defaults
+    # click on desired bucket
+    # click 'upload' button
+    # upload auth page created in first step, click ok
+    # after upload, right click on auth page.  choose (make public)
+    # right click on auth page, choose properties
+    # right click on 'link' to get URL of your auth page
+    # provide this URL to Security (Glean) aka AppKit.Auth
+  # repeat above steps for each authentication group you need
+
+=== FIRST TIME USE ===
+ # start warden, start -> tradelink -> warden
+ # enter your AWS ID and key information
+ # enter your bucket name
+ # enter name of your auth page in user list name (include folders with slash '/' if used)
+
+=== NEW USER/MACHINE ===
+ # ensure your user list is correct
+ # click getusers button to see current user list
+ # enter name and code, click 'ok' to add
+ # click apply to update list
+ # you can always click '+' to clear boxes for another add
+
+=== REMOVING ===
+ # ensure your user list is correct
+ # click getusers button to see current user list
+ # select name/code to remove
+ # click '-' button to remove 
+ # then apply to update
+
+=== EDITING ===
+ # ensure your user list is correct
+ # click getusers button to see current user list
+ # double click item to edit
+ # modify and click ok.   (creates second copy)
+ # select old item and click remove/'-'
+ # click apply to update
+
+
+=== PROBLEMS ===
+_Invalid aws key/id_  Re-enter your key.  Copying/pasting extra spaces or characters will cause this message.
+
+_Registered code shows as unregistered_  Ensure that you can access your secure URL in a webbrowser.   If you get access denied in a webbrowser, your URL isn't public.  In this case even if your code is registered in warden your apps/strategies can't authenticate.  go back to 'setup' instructions above and make your URL public.
+    

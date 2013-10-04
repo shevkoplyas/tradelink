@@ -1,0 +1,161 @@
+#summary Creating applications with TradeLink
+
+Building Applications with TradeLink
+<wiki:toc max_depth="3" />
+
+=== Introduction ===
+
+Using TradeLink's framework you can :
+ * add live trading to existing commercial applications.   
+ * support super-fast tick-based backtesting simulations with full order support
+ * easily connect to many different popular brokerage and feed providers with one interface
+ * build complete applications from scratch.
+ * [http://code.google.com/p/tradelink/wiki/WhatIsOpenSource Retain full control and freedom to evolve in any direction with a 100% open source model]
+
+Here are some simple examples to give you ideas of what is possible.
+
+
+=== Historical/Simulation applications ===
+
+Running a simulation is simple :
+ # specify the SymbolDays you want to include in the simulation
+ # eg : IBM20100305 IBM20100306 AAPL20100306
+ # provide a folder that contains the TIK data
+ # handle any simulation events you care about (eg Ticks, fills)
+ # run the simulation to any given point in time (or the end)
+ # send fills or respond as necessary while simulation runs
+ # [http://code.google.com/p/tradelink/wiki/SpeedTests Simulations run at ~ 250,000 ticks/second]
+
+Simple Code example :
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+
+public class Program
+{
+  static HistSim h;
+  static void Main(string[] args)
+  {
+         // runs simulation on all tickdata in this location
+         // use multi-symbol (portfolio realistic) simulation
+         h = new MultiSimImpl(@"c:\TickData");
+         // handle events
+         SimBroker.GotFillEvent += new FillDelegate(gotfill);
+         h.GotTick+=new TickDelegate(gottick);
+         // start simulation
+         h.PlayTo(MultiSimImpl.ENDSIM);
+         // write trades to CSV file for reading by another program
+         Util.Trades2ClosedPLText(fills,"trades.csv");
+       
+  }
+  static Queue<Order> orders = new Queue<Order>();
+  static Broker SimBroker = new Broker();
+  static void gottick(Tick k)
+  {
+     // execute any pending orders
+     SimBroker.Execute(k);
+     // send any new orders from our application
+     While (orders.Count>0)
+        SimBroker.SendOrder(orders.DeQueue());
+  } 
+  static List<Trade> fills = new List<Trade>();
+  static void gotfill(Trade f)
+  {
+     // save fills so we can generate stats later
+     fills.Add(f);
+  }
+}
+}}}
+
+Other Examples : Gauntlet, Kadina and Replay.
+
+Getting Data in TradeLink TIK format :
+
+ * Use TradeLink TikConverter app in the suite (cqg, tradestation, esignal).
+ * Write your own converter using [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkCommon/TikWriter.cs TikWriter] and [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkTests/TestTikWriterReader.cs the TikWriter examples]
+ * Record data from a live feed using [http://code.google.com/p/tradelink/wiki/TickArchiver TickArchiver component]
+ * Record data from live feeds using ASP or Record in the Suite
+
+
+=== Live Broker Applications ===
+
+Write one application that [ProviderFeatureMatrix talks to 8 brokers]:
+  # Start relevant Broker Connector 
+  # Start a TradeLink Client instance
+  # (optional) specify the broker you wish to talk to from this instance
+  # (optional) verify the broker has the features your application requires
+  # Handle any events you need
+  # Send orders/cancels, request ticks for symbols, etc.
+
+Simple example :
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+
+public class Program
+{
+  static TLClient tl;
+  public static void Main(string[] args)
+  { 
+    // assuming you have already started a server connector
+
+    // start a client instance (by default it connects to first broker it finds)
+    tl = new TLClient_WM();
+
+    // verify this broker has features we require
+    if (!tl.RequestFeatureList.Contains(MessageTypes.SENDORDER))
+       MessageBox.Show("Error, provider: "+tl.BrokerName+" does not support sending orders.");
+
+    // handle whatever events you need
+    tl.gotTick+=new TickDelegate(gottick);
+    tl.gotFill+=new FillDelegate(gotfill);
+    tl.gotPosition+= new PositionDelegate(gotposition);
+    tl.gotCancelOrder+= new LongDelegate(gotcancel);
+
+    // request some ticks
+    tl.Subscribe(new BasketImpl("IBM"));
+    
+    // wait until user stops us
+    while (Console.ReadKey()!=Keys.X)
+      System.Threading.Thread.Sleep(100);
+    
+  }
+
+  IdTracker _idt = new IdTracker();
+  long previd = 0;
+  static void gottick(Tick k)
+  {
+    long order id = _idt.AssignId;
+     // on each tick, send order off the bid
+     if (k.hasBid)
+     {
+        int err = tl.SendOrder(new BuyLimit(k.symbol,1,k.bid*.90m,id));
+        if (err!=0) Console.WriteLine("error sending order: "+Util.PrettyError(tl.BrokerName, err));
+     }
+     // cancel previous order
+     if (previd!=0) tl.CancelOrder(previd);
+     previd = id;
+  }
+
+  static void gotcancel(long canceled) { }  
+
+  // keep track of position information we receive
+  static PositionTracker pt = new PositionTracker();
+  static void gotposition(Position p) { pt.Adjust(p); }
+  static void gotfill(Trade t) { pt.Adjust(t);
+
+}
+}}}
+
+Multiple Brokers/Feeds :
+ * For supporting split data and execution, [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkCommon/BrokerFeed.cs checkout the brokerfeed instance]
+ * You can start as many clients and servers as you like and talk to whichever you like
+
+TradeLink Examples : ASP, Quotopia and Record.
+
+=== More information ===
+
+ * [http://www.pracplay.com/contact We can build applications for you.]
+ * [AppKitComponents Checkout the appkit components for doing commonly used things in your application]
+ * [http://code.google.com/p/tradelink/source/checkout Checkout the applications included in TradeLink as examples of what is possible]
+ * [http://code.google.com/p/tradelink/wiki/WhatIsOpenSource what is open source?]

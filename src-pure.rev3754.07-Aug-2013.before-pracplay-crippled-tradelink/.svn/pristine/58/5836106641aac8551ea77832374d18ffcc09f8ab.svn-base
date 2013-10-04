@@ -1,0 +1,9 @@
+#summary Spread-trading with TradeLink
+
+PairsTracker can be used for simple pairs-trading setups in TradeLink.
+
+It's also an example for building re-useable trading components.   
+
+For example, you could take PairsTracker and modify it to spread trade more than 2 symbols (3,5, an entire basket of stocks, etc).
+
+For more information, [http://code.google.com/p/tradelink/source/browse/trunk/Responses/PairsTracker.cs or checkout the code.]

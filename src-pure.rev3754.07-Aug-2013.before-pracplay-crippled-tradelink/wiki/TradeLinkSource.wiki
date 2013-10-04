@@ -1,0 +1,14 @@
+#summary SVN access to TradeLinkSource
+
+Command-Line Access
+
+If you plan to make changes, use this command to check out the code as yourself using HTTPS:
+# Project members authenticate over HTTPS to allow committing changes.
+svn checkout https://tradelink.googlecode.com/svn/trunk/ tradelink --username USERNAME
+
+When prompted, enter your generated googlecode.com password. 
+
+
+Use this command to anonymously check out the latest project source code:
+# Non-members may check out a read-only working copy anonymously over HTTP.
+svn checkout http://tradelink.googlecode.com/svn/trunk/ tradelink-read-only

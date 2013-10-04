@@ -1,0 +1,18 @@
+#summary Short entries and exit issues on Sterling
+
+Keep reading if you are getting 'Margin errors' or 'Short_Sale_Position_Rules_Violation' on sterling.
+
+Sterling supports several brokers, some of whom require shorts be specified in different ways :
+ # broker allows shorting with a sell, and covering with a buy
+ # broker requires shorts to be specified as short rather than sell, and covers as cover rather than buy
+
+For simplicity, TradeLink only allows users to specify option#1 when sending orders.  
+
+So if your broker requires option #2, you need to tell tradelink this so he can convert your orders automatically for you :
+
+ # In the folder you installed TradeLink (usually 'program files\tradelink\tradelinksuite')
+ # locate file SterServer.exe.config
+ # edit this file (eg with notepad)
+ # locate the property 'CoverEnabled'
+ # set this property to false if your broker doesn't require covering or you're getting buy margin errors
+ # set this property to true if your broker requires covering, or you're getting short sale violations

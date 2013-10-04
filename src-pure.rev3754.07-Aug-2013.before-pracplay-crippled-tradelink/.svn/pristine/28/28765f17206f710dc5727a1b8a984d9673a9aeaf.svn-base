@@ -1,0 +1,20 @@
+#summary Get random symbols
+
+{{{
+using TradeLink.Research;
+
+public class MyResponse : ResponseTemplate
+{
+    public override void Reset()
+    {
+         // get a symbol
+         string onesym = RandomSymbol.GetSymbols();
+         // get 5 symbols
+         string[] syms = RandomSymbol.GetSymbols(5);
+         // subscribe to 5 symbols (if they exist)
+         sendbasket(syms);
+        
+
+    }
+}
+}}}

@@ -1,0 +1,49 @@
+#summary Maintaining profit and loss targets
+
+Offsets are offsetting orders, iow profit targets or stop losses.
+
+They are specified by a distance in dollars away from your position price.
+
+You also specify a percertage of your position the offset should cover.   100% is assumed.
+
+Here is an example :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  public override void GotTick(Tick k)
+  {
+      // offsettracker uses ticks as an extra heartbeat
+      ot.newTick(k);
+  }
+  public override void GotPosition(Position p)
+  {
+    ot.Adjust(p);
+  } 
+  public override void GotCancel(long id)
+  {
+    ot.GotCancel(id);
+   }
+  public override void GotFill(Trade fill)
+  {
+     ot.Adjust(fill);
+   }
+  // create offset tracker
+  OffsetTracker ot = new OffsetTracker();
+  public MyResponse()
+  {
+     // enable default profit targets at 20 cents and stops at 10cents
+     ot.DefaultOffset = new OffsetInfo(.2m,.1m);
+     // uncomment next line to disable default stops entirely using 0 for StopPercent
+     //ot.DefaultOffset = new OffsetInfo(.2m,0,1,0);
+     // set a different offset for a specific position
+     ot["IBM"].ProfitDist = .5m;
+     ot["IBM"].StopDist = .25m;
+
+     // tell offset tracker where to send orders, cancels and debugging ifnormation
+     ot.SendOrder+=new OrderDelegate(sendorder);
+     ot.SendCancel+= new LongDelegate(sendcancel);
+     ot.SendDebug+=new DebugDelegate(senddebug);
+  }
+}
+}}}

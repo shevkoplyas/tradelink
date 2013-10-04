@@ -1,0 +1,5 @@
+#summary Missing method exception in quotopia/ASP/record
+
+This can occur if you are running an older version of .NET framework 
+
+[http://www.microsoft.com/download/en/details.aspx?id=17851 To correct, install latest version of .net]

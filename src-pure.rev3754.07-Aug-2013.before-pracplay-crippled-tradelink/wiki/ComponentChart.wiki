@@ -1,0 +1,36 @@
+#summary Chart ticks and bars in TradeLink
+
+Using control :
+ * drag and drop control to any windows form
+
+Using Chart/Window:
+ * display or hide using Toggle()
+
+Example:
+{{{
+public partial class MyProg : Form
+{
+   TLClient tl = new TLClient_WM();
+   Chart c = new Chart();
+   public MyProg()
+   {
+        InitializeComponent();
+        // ensure we have ticks
+        if (tl.RequestFeatureList.Contains(MessageTypes.TICKNOTIFY))
+        {
+            // send ticks to chart
+            tl.gotTick+=new TickDelegate(c.newTick);
+            // request ticks
+            tl.Subscribe(new BasketImpl("IBM"));
+            // show chart
+            c.Toggle();
+        }
+
+   }
+
+   void button1_Click(object sender, EventArgs e)
+   {
+       c.Toggle();
+   }
+}
+}}}

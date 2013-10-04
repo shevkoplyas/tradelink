@@ -1,0 +1,27 @@
+#summary Kadina Usage Guide
+
+= Introduction =
+
+Kadina allows stand-alone, single-tick file playback.
+
+It is designed to allow you to quickly see how a strategy trades in single stock, and give you fine-grained view into how your box is responding to market events.
+
+It is good for diagnosing atypical winners and losers to see what went wrong (or right!).
+
+= Basics =
+
+ 1. start kadina
+ 1. drag a tick file onto the window (or select from 'Browse' menu)
+ 1. drag a Response dll onto the window (or select from 'Browse' menu)
+ 1. select a Response from your dll on the 'Responses' menu
+ 1. select a 'play to' option, kadina will playback to this time uninterrupted
+ 1. select an exchange.
+ 1. right click window and click play
+ 1. kadina should playback your tick file against your strategy
+
+= Features =
+ * any debug messages from your box will be displayed in the messages window
+ * ticks will be displayed in it's tab
+ * orders, fills and position changes will be displayed in their tabs
+ * if you have any indicators enabled in your box, they will show up there
+ * to restart from the beginning, right click and choose restart

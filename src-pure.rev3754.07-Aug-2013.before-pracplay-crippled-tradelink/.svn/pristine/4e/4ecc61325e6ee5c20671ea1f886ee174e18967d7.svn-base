@@ -1,0 +1,31 @@
+#summary Custom messages in Responses
+
+Custom messages allow stuff that may not be supported by every broker.
+
+Caution should be used, as these features :
+  * can make your strategy not portable between brokers.    
+  * can prevent backtesting.   
+
+You may want to put a toggle to disable them for other brokers or backtesting.
+
+Here is how to print the name of the broker ASP is using.
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+   MessageTracker _mt = new MessageTracker();
+   override void Reset()
+   {
+      _mt.GotProvider+=new ProviderDelegate(provider);
+   }
+   override void GotMessage(MessageTypes type, uint source, uint dest, uint msgid, string request, ref string response)
+   {
+       _mt.GotMessage(type,source,dest,msgid,request,ref response); 
+   }
+ 
+   void provider(Providers p)
+   {
+      D(p.ToString());
+   }
+}
+}}}

@@ -1,0 +1,21 @@
+#summary Trade with Deutsche Bank's DBFX service
+
+[http://www.screentoaster.com/watch/stVUNWQ0BIR1xeQVtYWV5YUVBQ/tradelinkquickstartdbfx A video of this guide is available.]
+
+Steps :
+ # Install TradeLink and [http://www.dbfx.com/forex-trading-platform/forex-software-download DBFX]
+ # Start DBFX icon from TradeLink Programs group under start menu
+ # Enter user id and password
+ # Choose demo or live
+ # press ok
+ # if successful, background should turn green
+ # if background is red, click exclamation point to see error message (verify login information)
+ # When green, open quotopia or any other tradelink program you wish to use
+ # at this point, you may send and cancel orders
+
+Questions
+ # Why can't I get quotes or position information from DBFX?
+ 
+At present DBFX is enabled only for sending and canceling orders.
+
+If you need to do more, [HireUs please contact us.]

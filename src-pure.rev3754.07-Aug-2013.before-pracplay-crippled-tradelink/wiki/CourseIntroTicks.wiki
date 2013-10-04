@@ -1,0 +1,42 @@
+#summary Quick introduction of working with ticks in tradelink
+
+= Introduction =
+
+Ticks are easy to work with.  
+
+  # Connect to a server.   
+  # Register your gotTick event.
+  # Build a basket of securities you want ticks for.
+  # Subscribe to the basket.
+  # handle the gotTick event
+
+When new quotes or trades occur, these are passed as Tick instances to your gotTick function.
+
+
+= Details =
+
+{{{
+public partial class Form1 : Form
+{
+  // create a client, which connects to any running server it finds
+  TLClient_WM tl = new TLClient_WM(); 
+  public Form1()
+  {
+     InitializeComponent();
+     // register got tick event, this function name is called when ticks arrive
+     tl.gotTick+= new TickDelegate(tl_gotTick);
+     // build a basket
+     Basket mb = new BasketImpl(new string[] { "LVS", "IBM", "MHS", "/SPX", "CLV8 NYMEX FUT" } );
+     // subscribe to basket
+     tl.Subscribe(mb);
+  }
+
+  void tl_gotTick(Tick tick)
+  {
+     // handle the tick, do whatever you need to do here
+     if (tick.isTrade) tl.SendOrder(new LimitOrder(tick.symbol, tick.trade+.01m,200));
+  }
+  
+}
+}}}
+

@@ -1,0 +1,27 @@
+#summary How do I find sample or recorded/converted tickdata?
+
+=== Locating Tick data ===
+
+Easy way :
+
+start->programs->tradelink->tickdata
+
+long way :
+
+XP :
+
+c:\documents and settings\USER\application data\local\tradelinkticks
+
+vista :
+
+c:\users\USER\appdata\local\tradelinkticks
+
+Both ASP and record use this folder.
+
+=== Changing Tick Data Location ===
+
+ # close all tradelink programs
+ # start->run->regedit.exe <ok>
+ # navigate to HK Local Machine\Software\Microsoft\Windows\CurrentVersion\Uninstall\TradeLinkSuite , or \Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TradeLinkSuite for x64 machines
+ # edit tickdatafolder path (must be fully valid path, otherwise your ticks will not save)
+ 

@@ -1,0 +1,23 @@
+#summary initial positions at response startup
+
+Responses are notified of any existing positions at response startup via GotPosition.
+
+In general these positions are passed to Position trackers, so beyond that you don't need to worry about them.
+
+However you can implement custom logic if you want regarding these positions
+
+{{{
+public class myresponse : ResponseTemplate
+{
+  PositionTracker pt = new PositionTracker();
+  override void GotPosition(Position p)
+  {
+     D("initial pos: "+p.ToString());
+     // get and display 52week avg price for this position
+     D(p.Symbol+" avg: "+Calc.Avg(BarListImpl.DayFromGoogle(p.Symbol).Close()));
+     pt.Adjust(p);
+     
+  }
+  override void GotFill(Trade t) { pt.Adjust(t); }
+}
+}}}

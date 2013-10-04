@@ -1,0 +1,15 @@
+#summary cancel notifications
+
+Everytime an order is canceled successfully, tradelink sends you a notification.
+
+Here's an example
+{{{
+// when we send orders, we add the id to this list
+List<uint> OrdersIveSent = new List<uint>();
+// when the orders are canceled, we remove from the list
+void GotCancel(uint id)
+{
+  if (OrdersIveSent.Contains(id))
+      OrdersIveSent.Remove(id);
+}
+}}}

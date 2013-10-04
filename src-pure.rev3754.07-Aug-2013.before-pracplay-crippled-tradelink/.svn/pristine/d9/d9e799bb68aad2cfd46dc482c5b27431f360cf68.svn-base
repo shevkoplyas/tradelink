@@ -1,0 +1,34 @@
+#summary Speed Test in TradeLink
+
+_Auto-generated from the unit tests in TradeLink (quad-core 1Ghz)_
+
+Click on a test name to see source code for the test.
+
+=== [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkTests/TestTradeLink_IP.cs Live Link] ===
+
+{{{
+protocol performance (tick/sec): 64,000
+}}}
+
+Latency = .01ms (10us/microseconds)
+
+
+=== [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkTests/TestMultiSim.cs Historical Simulator Portfolio] ===
+
+{{{
+BarList runtime: 0.14sec, versus: 0.6sec expected.
+BarList 395,676 ticks/sec
+Execution runtime: 0.19sec, versus: 0.8sec expected.
+Execution 296,757 ticks/sec.  5,333 fills/sec
+Raw runtime: 0.05sec, versus: 0.6sec expected.
+Raw speed: 1,187,029 ticks/sec
+}}}
+
+=== Reports from the Field ===
+
+* [BrokerSymbolPerformance Equities : Summaries of Live Per-symbol performance for equities]
+
+
+
+=== References ===
+ * [http://code.google.com/p/tradelink/source/browse/# (all the tests)]

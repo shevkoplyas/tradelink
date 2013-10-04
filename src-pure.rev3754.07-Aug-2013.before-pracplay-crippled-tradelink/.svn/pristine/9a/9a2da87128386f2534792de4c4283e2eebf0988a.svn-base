@@ -1,0 +1,43 @@
+#summary Papertrade your strategy on live data before sending to broker
+
+If you're trading with a broker that does not offer simulated executions, you can simulate the same executions with tradelink off a live feed.
+
+Here's how :
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+public class MyResponse : ResponseTemplate
+{
+  PapertradeTracker ptt = new PapertradeTracker();
+  public MyResponse()
+  {
+      // if we're paper trading, direct papertrade fills/orders back to our response
+      ptt.GotCancelEvent+=new LongDelegate(GotOrderCancel);
+      ptt.GotFillEvent+=new FillDelegate(GotFill);
+      ptt.GotOrdeEvent+=new OrderDelegate(GotOrder);
+  }
+  void GotTick(Tick k)
+  {
+      ptt.newTick(k);
+      // existing strategy rules/orders
+      // [...]
+      sendorder(new LimitOrder(k.symbol,100,k.bid+5));
+  }
+
+  override void sendorder(Order o)
+  {
+      // if we're paper trading, have to re-route orders to the paper fill engine
+      ptt.sendorder(o);
+  }
+  
+  PositionTracker pt = new PositionTracker();
+  void GotFill(Trade t)
+  {
+     pt.Adjust(t);
+  }
+  void GotPosition(Position p) { pt.Adjust(p); }
+
+  
+}
+}}}

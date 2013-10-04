@@ -1,0 +1,30 @@
+#summary TradeLink User testimonials
+
+_"+1, tradelink is awesome. Also free and very thin/light and can run on almost any machine." _
+
+[http://www.elitetrader.com/vb/showthread.php?s=&postid=3376356#post3376356 WinstonTJ]
+
+
+_"I've just started using this and think it's a brilliant piece of kit. I've been searching for something like this for some time. A c# open source framework that I could use as a base for some of my own stuff. Really pleased"_
+
+[http://www.bigmiketrading.com/platforms-indicators/13827-tradelink-http-code-google-com-p-tradelink-2.html#post179337 DangerBoy]
+
+_"I use tradelink because I want to use c#  rather than  other platform
+dependant language like MQL  to implement
+automatic trading strategies, and among those similar open source
+projects available on internet, I  think tradelink has
+the most powerful and complete libraries eg Tradelink.Commmon,
+Tradelink.API and TradeLink.Appkit."
+
+Fred
+
+_"Tradelink provides a firm foundation to build upon. You don't have to reinvent the wheel and so much is provided out of the box and that functionality is always growing. Indicators, order management, logging, back testing, the list goes on. A great library that helps get you to trading faster."_
+
+Michael
+
+_"innovative, definitely it's just what have been looking for years.. thank you for developing and sharing this great suite!"_
+5/13/2012 11:38 AM
+
+
+_"Just great, great work..."_
+5/26/2012 12:43 AM

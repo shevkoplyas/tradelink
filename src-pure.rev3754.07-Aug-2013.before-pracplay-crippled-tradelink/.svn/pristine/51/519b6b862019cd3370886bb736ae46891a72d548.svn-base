@@ -1,0 +1,14 @@
+#summary Different ways to automate a strategy
+
+= Introduction =
+
+TradeLink allows different ways to automate strategies
+
+Each one has pros and cons.   See below for a breakdown.
+
+The simplest way to decide:
+   # try out [TradeLinkSuite all the include applications]
+   # this includes response examples in Responses.dll (source code via Start->Programs->TradeLink->Response Examples)
+   # decide which is closest to your needs
+   # [ModifyResponse then modify it]
+   # If you aren't sure, [EmailUsersGroup ask mailing list]

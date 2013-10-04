@@ -1,0 +1,45 @@
+#summary Create an indicator using test-driven design.
+
+= Introduction =
+
+In Test-Driven-Design... first we describe our ideal result, then we decide how best to get there.
+
+In practice, lets say we're building an addition function.   We'd say:
+
+ * successful addition would be:   
+
+{{{ Assert.That(4==addition(2,2)); }}}
+
+ * unsuccessful addition would be:  
+
+{{{ Assert.That(!(5==addition(2,2)); }}}
+
+ * also we want to define edges clearly: 
+{{{ 
+Assert.That(1==addition(1,0));
+Assert.That(1==addition(0,1));
+Assert.That(0==addition(1,-1));
+Assert.That(0=addition(0,0));
+}}}
+
+With these 6 tests (or assertions) defined, we can run our tests.  Every tests should fail, because we haven't defined addition().   So verify that the tests fail, then write the addition function:
+
+{{{
+decimal addition(decimal a, decimal b) 
+{ 
+  return a+b;
+}
+}}}
+
+Now your tests should pass.  The beauty of this approach is that you can focus on your tests, rather than trying to understand how your code needs to change with features.  Simply define the features as a test, then you can change the code to pass the test whenever you want.  
+
+= Details =
+
+ 1. [TradeLinkIndicators  Find an indicator not already in TradeLink]
+ 1. [http://google.com Google or wikipedia] the indicator to get the implementation
+ 1. Make up some test data, ie if it's a moving average make up some price data and figure the moving average.
+ 1. Write some assertions in a seperate test class using the NUnit framework ([http://code.google.com/p/tradelink/source/browse/trunk/ResponseTests/TestBlade.cs see the TestBlade class for an example]).
+ 1. Run the tests, they should fail.
+ 1. Write the implementation code for your indicator (using wikipedia or whatever) in a NEW class
+ 1. Rework your new class until it passes your indicator tests.
+ 1. Send your indicator to tradelink-contribute to see about getting it commited to the project.

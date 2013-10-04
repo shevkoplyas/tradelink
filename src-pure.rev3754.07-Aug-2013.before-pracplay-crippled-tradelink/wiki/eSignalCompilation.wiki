@@ -1,0 +1,5 @@
+#summary When compiling esignal connector, get 'missing IEsignal' assembly.
+
+ * IEsignal is part of winsig.exe in your esignal installation.
+ * you may need to re-add the reference to winsig.exe
+ * if you don't need esignal you can ignore this error

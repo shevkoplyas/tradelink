@@ -1,0 +1,44 @@
+#summary Easily run tasks in the background
+
+Run Helper allows you to run a time consuming task as a background process.   This is useful for allowing your UI to function while other processes are occuring.
+
+
+
+RunHelpers utilize background workers, which are very efficient threads in .net.
+
+For simplicity and avoiding delegates, Run helpers are always called with an empty argument list.   
+
+{{{
+using TradeLink.AppKit;
+
+void mybuttonpress(object sender, EventArgs e)
+{
+   max = (int)numericUpDown1.Value;
+   debug("starting computation to "+max);
+   RunHelper.run(fib,displayfib,debug,"fibonacci");
+   debug("computation to "+max+" running in background");
+}
+
+int max = 0;
+int prev = 0;
+int fib = 1;
+
+void fib()
+{
+   int c = 0;
+   while (c++<max)
+   {
+      int orgfib = fib;
+      fib = prev+fib;
+      prev = orgfib;
+      // for long running computations or network intensive operations, you may want to periodically rest
+      // Util.sleep(20);
+   }
+}
+
+void displayfib()
+{
+    debug("computation completed, last fib was: "+fib);
+}
+
+}}}

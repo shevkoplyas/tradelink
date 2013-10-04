@@ -1,0 +1,23 @@
+#summary Report issues without affecting application performance
+
+Use this component if you need to quickly open bug or issue reports in-line while processing realtime data.
+
+Example:
+{{{
+public class MyResponse : ResponseTemplate
+{
+   TicketTracker rt = new TicketTracker("myspace",this.Name,"username","password");
+   void GotTick(Tick k)
+   {
+      try {
+         // your code
+      }
+      catch (Exception ex)
+      {
+         // open a ticket documenting the exception
+         rt.Track("a problem occured in: "+k.symbol,ex.StackTrace+ex.Message);
+      }
+   }
+   
+}
+}}}

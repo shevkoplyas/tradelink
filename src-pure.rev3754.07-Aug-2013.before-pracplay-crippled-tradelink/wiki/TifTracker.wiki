@@ -1,0 +1,39 @@
+#summary Expiration of orders in tradelink
+
+TifTracker allows you to set a Time-In-Force (TIF) such that after X seconds an order will expire.  
+
+This tracker uses ticks as the heartbeat, so it only enforces the deadline when ticks arrive.
+
+Example :
+
+{{{
+
+public class MyResponse : ResponseTemplate
+{
+  TifTracker tift = new TifTracker();
+  public override void GotTick(Tick k)
+  {
+     tift.newTick(t);
+     // send an order
+     sendorder(new BuyLimit("IBM",10m,300));
+  }
+  // override sendorders to map orders through tif tracker
+  public override void sendorder(Order o)
+  {
+     tift.sendOrder(o);
+  }
+  // process cancels
+  public override void GotOrderCancel(long id)
+  {
+     tift.GotCancel(id);
+  }
+   public MyResponse() 
+  {
+    // 30 second tif
+     tift.DefaultTif = 30;
+    // route orders and cancels from tif tracker to right place
+    tift.SendOrder+=new OrderDelegate(base.sendorder);
+    tift.SendCancel+= new UintDelegate(sendcancel);
+  }
+}
+}}}

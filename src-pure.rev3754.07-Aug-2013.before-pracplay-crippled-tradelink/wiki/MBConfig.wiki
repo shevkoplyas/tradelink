@@ -1,0 +1,27 @@
+#summary Setting up MB Trading
+
+= Prerequisites =
+
+ # MB trading account
+ # install TradeLink
+ # broker Account member ID (remove any letters in id)
+ # username and password (also obtained from broker)
+
+= Setup =
+
+ # make sure you have an account
+ # [http://www.mbtrading.com/tradingplatforms.aspx ensure you have installed the latest MBT Desktop or MBT Desktop Pro]
+ # start MB+BrokerServer from TradeLink programs group.
+ # enter login information, click login.
+ # the app background should turn green on a successful login
+ # if it does not turn green, right click on background and choose messages to see why.
+ # once you have logged in (green), you can start any of the tradelink apps.
+ # eg Start Quotopia, enter a symbol to see quotes.
+
+*Note* _MB support is beta.  We need help testing this, so if you have an account contact us_ 
+
+= Common Problems =
+
+ * If connector crashes on startup or you have other issue with it not working, ensure you have installed correct MB desktop or desktop pro version as instructed by mb trading.
+
+[EmailUsersGroup Please report any problems you have to tradelink-users@googlegroups.com]

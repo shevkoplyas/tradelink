@@ -1,0 +1,7 @@
+#summary TradeLink's historical tick engine
+
+Information:
+  * processes around 130,000 ticks a second
+  * can process a year's worth of DOW-30 tickdata in approx 45min
+  * open source under LGPL [http://code.google.com/p/tradelink/source/browse/trunk/TradeLinkCommon/HistSim.cs  see the source code]
+  * TradeLink applications that use HistSim include Gauntlet, Kadina and Replay

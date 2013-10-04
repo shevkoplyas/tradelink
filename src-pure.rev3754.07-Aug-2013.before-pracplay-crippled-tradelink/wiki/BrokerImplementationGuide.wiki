@@ -1,0 +1,51 @@
+#summary Adding brokers in tradelink
+
+A tradelink broker can support any number of features.
+
+To use a broker across all the applications (or trade a response with it), the following features need to be added :
+
+
+|| Feature / market event || TLServer_WM c# method/event || TLServer c++ method || TL Message ||
+|| requesting ticks for symbols || Register || Register || SUBSCRIBE ||
+|| ticks|| newTick || SrvGotTickAsync || TICKNOTIFY|| 
+|| sending orders || newServerFillRequest || SendOrder || SENDORDER ||
+|| order notification|| newOrder|| SrvGotOrder ||ORDERNOTIFY ||
+|| fill notification || newFill || SrvGotFill || EXECUTENOTIFY ||
+|| initial position notification || newPositionRequest || PositionRequest || POSITIONREQUEST/POSITIONRESPONSE ||
+|| cancels || CancelOrder || CancelOrder || CANCELREQUEST ||
+|| order notification || newCancel || SrvGotCancel || CANCELRESPONSE ||
+|| feature notification || newFeatureRequest || FeatureRequest || FEATUREREQUEST/FEATURERESPONSE ||
+|| custom broker features || newUnknownFeature || UnknownFeature || any ||
+
+
+
+Here is the general process, what responses expect to happen : 
+{{{
+trades 
+sendorder -> GotOrder (when/if acknowledged) -> (when fill occurs) GotFill 
+ticks 
+sendbasket -> GotTick (when/if ticks occur in basket) 
+cancels 
+sendcancel -> GotOrderCancel (when/if order is canceled) 
+here is how it works at the protocol level, you don't need to worry 
+about this for what you're doing but if you're curious these are the 
+messages that correspond to the above calls : 
+trades 
+SENDORDER -> ORDERNOTIFY -> (when fill occurs) EXECUTENOTIFY 
+ticks 
+REGISTERSTOCKS -> TICKNOTIFY (when ticks occur in registered symbols) 
+cancels 
+CANCELREQUEST -> CANCELRESPONSE (when cancel occurs) 
+}}}
+
+
+
+
+To find a connector to use as a template, and more information :
+ * [http://code.google.com/p/tradelink/source/checkout Checkout SterServer project for an example of a .net broker]
+ * [http://code.google.com/p/tradelink/source/checkout Checkout the BrokerServers\TWSServer for an example of a c++ broker]
+ * [http://groups.google.com/group/tradelink-users/browse_thread/thread/8579f31d8fb72d7c# You may wish to consult this thread.]
+
+When you are done :
+ * [TradeLink make sure you can run the quick starts]
+ * [TradeLinkBuild#Creating_Patches make sure you submit the connector as a patch so it works automatically with future releases]

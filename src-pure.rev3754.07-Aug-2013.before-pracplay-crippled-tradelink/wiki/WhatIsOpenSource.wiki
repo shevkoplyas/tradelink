@@ -1,0 +1,40 @@
+#summary Open source advantages
+
+= *"A report by Standish Group states that adoption of open-source software models has resulted in savings of about $60 billion per year to consumers." *[http://www.freesoftwaremagazine.com/community_posts/creating_wealth_free_software 1][http://standishgroup.com/newsroom/open_source.php 2] =
+
+----
+
+
+
+== TradeLink is 100% open source.   What does this mean? ==
+ # [http://code.google.com/p/tradelink/wiki/ProjectStats You receive more than $2million of developer value at no cost.]
+ # Start from proven technology with 15+ brokers, 25,000+ users and 1,000+ unit tests.
+ # Retain the option to evolve your trading ideas in any direction at any time
+ # Every calculation  can be seen immediately, every bug can be identified.
+ # Connect proprietary, closed source projects to TradeLink to maintain the best of both worlds.
+
+
+== Q: I like your platform, but I don't need to modify the source code.   Should I still use tradelink? ==
+
+A: Yes.  The source code is always fully available to you, but it's not required to use the applications.   Because it is there, you have an implicit option to grow in any direction you choose, even if you chose to go in a different direction from the TradeLink development group.
+
+==Q: Do I need the source code to use TradeLink?==
+
+A: No.   You can install the binary version of the software and use [http://code.google.com/p/tradelink/wiki/WhatIsTradeLink#Off-the-shelf_Trading_Platform the off the shelf products].
+
+==Q: If I run proprietary ideas or strategies using tradelink, do my private ideas also become open source?   How do I protect my ideas?==
+
+A:  No.  In a word processing metaphor, TradeLink is to MS-Word what your strategy or idea is to a document.   Just because somebody has MS-Word does not imply they can read your documents unless you make the document available to them.   [http://code.google.com/p/tradelink/wiki/ComponentAuth We also provide an authentication component which allows you to restrict what machines a given strategy or application can run on.]
+
+== Q: How do I obtain the source code? ==
+A: [http://code.google.com/p/tradelink/source/browse/#svn/trunk all applications downloaded from this site also have source code available]
+
+== Q: What open source license does tradelink use? ==
+A: Source code [http://www.gnu.org/licenses/lgpl.html licensed under the LGPL]
+
+== Q: If I write a strategy or program with TradeLink, do I have to release the source code? ==
+A: No. LGPL is commercial friendly, you can:
+ * Write a strategy or application which links (binary level) to TradeLink, and use and even sell or redistribute this new application without releasing your source code.
+ * Make changes to TradeLink source code itself and use these changes inside your organization only without releasing the changes.
+ * Only if you make changes to TradeLink itself and intend to redistribute or sell the modified TradeLink are you required to release these changes back to the community.
+ * You are never required to release proprietary source code that binary links to TradeLink.

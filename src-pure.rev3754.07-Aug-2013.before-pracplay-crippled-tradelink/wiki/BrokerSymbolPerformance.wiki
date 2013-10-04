@@ -1,0 +1,33 @@
+#summary Realtime performance with many symbols
+
+TradeLink has two realtime feed protocols supported :
+ * IP gets 20-40,000 ticks/second
+ * Legacy gets 15-30,000 ticks/second ([RemoteProviderConnection legacy is presently the default protocol])
+
+The number of symbols you can handle with this depends on the symbols and the tick frequency on any given day.
+
+On average you should be able to get in this range of symbols for equities :
+ * IP 200-2,000 
+ * Legacy 100-1,000
+
+*The caveat is that not every broker can support these levels of throughput*
+
+Here are user reports for selected brokers :
+
+{{{
+ib (not full tick data feed, so should be unlimited)
+genesis (remote they allow 2-3.)
+dtn iqfeed (700)
+assent 200-300
+sterling regular infrastructure (100)
+sterlign dedicated infrastructure (1000)
+esignal (api max is 200-300, but can be stressed by ~100 in busy market)
+lightspeed (200-300 per machine)
+mbtrading (no reports yet)
+td ameritrade (500 symbols reported)
+realtick (100 reported)
+nxcore (~1000)
+blackwood (20 reported)
+}}}
+
+[http://groups.google.com/group/tradelink-users/t/9eddbaf266d75c6  See this thread for more information or followup questions.]

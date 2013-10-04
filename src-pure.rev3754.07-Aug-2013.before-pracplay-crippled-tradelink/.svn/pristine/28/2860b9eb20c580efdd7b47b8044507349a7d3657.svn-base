@@ -1,0 +1,182 @@
+#summary Frequently asked questions
+
+Index to Questions:
+<wiki:toc max_depth="2" />
+
+== Introduction ==
+
+[http://code.google.com/p/tradelink/wiki/WhatIsTradeLink What is TradeLink?]
+
+[http://code.google.com/p/tradelink/wiki/ProviderFeatureMatrix What securities and brokers can I use with TradeLink?]
+
+[http://code.google.com/p/tradelink/wiki/WhatIsOpenSource What is open source?]
+
+[TradeLinkSuite What is included?]
+
+[TradeLink How can I get started and try it out?]
+
+[http://community.tradelink.org Where can I get community assistance?]
+
+
+
+== Brokers and Feeds ==
+
+
+[TwsConfiguration How do I make it work with Interactive Brokers TWS?]
+
+[SterConfig How do I make it work with Sterling Pro?]
+
+[LightspeedConfig How do I make it work with Lightspeed?]
+
+[TDConfig How do I make it work with TDAmeritrade?]
+
+[DBFXConfig How do I make it work with DBfx?]
+
+[MBConfig How do I make it work with MBTrading?]
+
+[GenesisConfig How do I make it work with Genesis?]
+
+[BlackwoodConfig How do I make it work with Blackwood?]
+
+[RediConfig How do I make it work with REDI?]
+
+[EsignalConfig How do I make it work with eSignal?]
+
+[DtnConfig How do I make it work with DTN-IqFeed?]
+
+[NxCoreConfig How do I make it work with NxCore?]
+
+[RealtickConfig How do I make it work with RealTick?]
+
+[HoldBrosGrayBox How do I make it work with GrayBox?]
+
+[DasConfig How do I make it work with DAS?]
+
+[BrokerImplementationGuide  How do I add a broker?]
+
+
+
+
+== First-Time Problems ==
+
+[VcRedist TWS Server, GenesisServer or AnvilServer won't start]
+
+[VcRedist I got 'specified module not found', 'Application Configuration Incorrect', or 'side by side configuration does not match'!]
+
+[ErrorBrokerServerNotFound What if I get 'BrokerServer not found' or 'TLServerNotFound' ?]
+
+[OtherErrors Other errors, crashes on startup, 'Crash has occured, crash report']
+
+[ComFactoryErrors 'COM class factory error for Component CLSID' on startup of broker connectors]
+
+[SterlingOrderErrors Sterling orders don't show up, or errors received in SterServer]
+
+[TickRecordProblems Can't find tick data, tick data doesn't show up, Record doesn't work?]
+
+[MissingMethodException 'Missing method exception' when using quotopia or ASP]
+
+[SterlingShortsDontWork Problems with shorting or exiting short trade on Sterling]
+
+[TickBufferOverrun 'tick buffer overrun' messages received in ASP]
+
+[ClientDisconnections 'disconnected / reconnected' messages appear in ASP or Quotopia]
+
+[SecurityTypeMissingASP 'security type is missing on SYMBOL' in ASP messages]
+
+[ReportingIssues How do I report problems?]
+
+*Custom tradelink.org Build Errors*
+
+[http://code.google.com/p/tradelink/wiki/TDConfig#Developing_or_Extending_TDServer TDAmeritrade errors compiling project 'namespace name AmeritradeBrokerAPI could not be found']
+
+[https://code.google.com/p/tradelink/wiki/DtnConfig#Building_IQfeed_connector Missing z_PracplayProductCode.cs when compiling iqfeed connector]
+
+[eSignalCompilation Missing ISignal reference while compiling all of TradeLink]
+
+[TradeLinkBuildErrors Other errors building tradelink]
+
+
+
+
+== TradeLink Usage ==
+
+[TLTradeStation How do I execute orders from Tradestation, Multicharts, R, Matlab, esignal and more through TradeLink?]
+
+[http://code.google.com/p/tradelink/wiki/TradeLink#Live_Fully_Automated_Trading How do I quickly see a strategy trade?]
+
+[http://code.google.com/p/tradelink/wiki/TradeLink#Live_Discretionary_Trading How do I send an order in quotopia?]
+
+[TradeLinkTickData How do I get tick data?]
+
+[BrokerImplementationGuide How do I add a new broker or feed?]
+
+[KadinaDocs How do I use Kadina?]
+
+[TradeLinkMonoUnix Does TradeLink work on Mac/Unix/Linux/Mono?]
+
+[TradeLinkReplay How do I replay a trading day in quotopia or ASP?]
+
+[TickDataFolder Where do ASP and Record store tickdata?]
+
+[HowToSkin What is a skin, and how do I use it?]
+
+[ReportingIssues How do I report other problems?]
+
+[HowToGetLogs Are log files available for X program?]
+
+[WardenConfig How to administer authentication with tradelink warden]
+
+[ParallelBrokerConnections How do I use multiple feeds/brokers together?]
+
+[RemoteProviderConnection How do I connect to remote providers for feeds or executions?]
+
+[ExampleConverting I know Visual Basic.  How do I convert your c# examples to VB?]
+
+[http://www.pracplay.com/buy How do I get technical support?]
+
+[ScreenToaster How do I record a screentoast?]
+
+== Modifying TradeLink ==
+
+Most users *do not* need to modify TradeLink.  
+
+You can build your own custom applications from the installed version.
+
+This is what we recommend for most users.
+
+[TradeLinkBuild How do I build tradelink from scratch?]
+
+[TradeLinkBuild How do I add features that don't exist?]
+
+[TradeLinkDebug How do I use the debugger to debug my code?]
+
+[http://code.google.com/p/tradelink/wiki/TradeLinkBuild#Creating_Patches How do I create a patch for my change?]
+
+
+
+== TradeLink Technical ==
+
+[TradeLinkLanguages What languages can I program in?]
+
+[TradeLinkLanguages What languages does TradeLink support?]
+
+[http://code.google.com/p/tradelink/wiki/SpeedTests How fast is tradelink for live trading and backtesting?]
+
+[BrokerSymbolPerformance How many symbols does TradeLink support in realtime?]
+
+[http://groups.google.com/group/tradelink-users/search?group=tradelink-users&q=release What features are in latest release?]
+
+[WinLoserSeqEffProbHypo What are the WinSeqEffProbHypo and LoseSeqEffProbHypo indicators in Gauntlet/Kadina trade results?]
+
+[ProjectStats How long has your project existed?]
+
+
+[TradeLinkComparison How does TradeLink compare to other trading platforms?]
+
+[GauntletFlowChart How does gauntlet work?]
+
+[TradeLinkPlayBackOptions What is the difference between Gauntlet, Kadina and Replay if they all replay ticks?]
+
+[TradeLinkFix Does TradeLink support FIX connections?]
+
+[http://code.google.com/p/tradelink/w/list All topics in this wiki]

@@ -1,0 +1,24 @@
+#summary Formalize idea as an algorithm
+
+Example idea : Buy 52week Highs and Sell 52-week lows.
+
+FEATURES
+ * program will be run inside TradeLink ASP
+ * GUI on startup that provides grid with symbol list
+ * columns in grid are : symbol, entrysize, entry price
+ * via right click, user provides an initial list of SYMBOLS
+ * via right click, user can provide a URL from which any matching symbols will be removed from initial list (FILTERED = SYMBOLS - IGNORE)
+ * Obtain yearly charts for all symbols remaining in FILTERED list
+ * Get 52HIGH and 52LOW for each symbol
+ * program eliminates any FILTERED symbols that are not breaking out, eg have not made NEWHLCOUNT highs or lows in last NEWHLLOOKBACK days.   ACCEPTED = FILTERED - NONBREAKOUT
+ * ACCEPTED symbols will be displayed in GUI to user
+ * user provides NEWHLCOUNT and NEWHLLOOKBACK values via right click option
+ * any remaining symbols will be subscribed to obtain intra-day ticks
+ * upon first print in symbol as OPEN, calculate GAP = OPEN - YestCLOSE
+ * if symbol GAP< GAPFILTER, program will place entries (buy stops at 52week high and sell stops at 52-week low)
+ * entries order size will be ENTRYSIZE = SYMCAPITAL/CLOSING PRICE
+ * GAPFILTER and SYMCAPITAL will be provided by user via right-click GUI
+ * upon sending entry order, program will update size and price in grid
+ * upon a fill, profit targets and stop losses will be placed at PROFITDIST and STOPDIST respectively
+ * user will provide PROFITDIST and STOPDIST via right-click GUI option
+ * program will flat any positions still existing by SHUTDOWNTIME

@@ -1,0 +1,36 @@
+#summary Request ticks for symbols on this response
+
+single stock example on startup:
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  // called on startup
+  public override void Reset()
+  {
+     sendbasket(new string[] { "IBM" });
+  }
+  public override void GotTick(Tick k)
+  {
+     if (k.symbol!="IBM") 
+       senddebug("fatal error"); // this line will never be hit
+  }
+}
+}}}
+
+multiple stock example  :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  public override void Reset()
+  {
+      sendbasket(BasketImpl.FromFile("c:\\users\\johndoe\\desktop\\stocks.txt"));
+  }
+  public override void GotTick(Tick k)
+  {
+      // called on every tick with current contents of your stock list file
+      senddebug("Data for "+k.symbol +" arrived");
+  }
+}
+}}}

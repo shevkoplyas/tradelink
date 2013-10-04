@@ -1,0 +1,34 @@
+#summary Easily view debug or other information messages in a window
+
+Using Control:
+ * drag and drop control to any form
+
+Usage Window :
+ * create window
+ * show or hide it using Toggle() method
+
+Example:
+{{{
+public partial class MyProg : Form
+{
+   DebugWindow dw = new DebugWindow();
+   public MyProg()
+   {
+       InitializeComponent();
+       // display window by default
+       dw.Toggle();
+    }
+   
+   void button1_Click(object sender, EventArgs e)
+   {
+      // allow user to hide/show it from a button
+      dw.Toggle();
+    }
+
+   void debug(string msg) 
+   {
+     // message will be displayed in window
+     dw.GotDebug(msg);
+   }
+}
+}}}

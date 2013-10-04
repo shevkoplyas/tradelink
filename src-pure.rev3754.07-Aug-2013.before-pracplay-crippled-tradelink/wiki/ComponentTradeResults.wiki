@@ -1,0 +1,33 @@
+#summary Displaying Trading Statistics
+
+Using control :
+ * drag and drop control on any form
+
+Using widnow :
+ * create window
+ * show/hide window using Toggle()
+
+Example:
+{{{
+public partial class MyProg : Form
+{
+   TradeResults tr = new TradeResults();
+   TLClient tl = new TLClient_WM();
+   public MyProg()
+   {
+      // handle fill events
+      tl.gotFill+= new FillDelegate(gotfill);
+   }
+
+   void button1_Click(object sender, EventArgs e)
+   {
+       tr.NewResults("MyProg",fills);
+       tr.Toggle();
+   }
+
+   List<Trade> fills = new List<Trade>();
+   void gotfill(Trade t)
+   {
+   }
+}
+}}}

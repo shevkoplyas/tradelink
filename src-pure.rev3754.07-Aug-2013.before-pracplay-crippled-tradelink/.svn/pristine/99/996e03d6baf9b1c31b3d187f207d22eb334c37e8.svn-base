@@ -1,0 +1,16 @@
+#summary Allow users to create orders graphically
+
+{{{
+            // open ticket
+            string sym = "IBM";
+            // create a ticket using an order as template
+            Ticket tick = new Ticket(new BuyMarket(sym, 100));
+            tick.Text = sym;
+            tick.Location = Screen.FromPoint(Location).WorkingArea.Location;
+            tick.Location.Offset(+10, +10);
+            tick.SendOrder += new OrderDelegate(tl.SendOrder);
+            tick.Show();
+
+            // optionally send quotes to ticket so it can update limit/stop prices dynamically
+            tl.gotTick+=new TickDelegate(tick.newTick);
+}}}

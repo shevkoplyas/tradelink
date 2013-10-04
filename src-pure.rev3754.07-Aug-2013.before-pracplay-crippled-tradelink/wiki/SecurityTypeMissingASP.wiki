@@ -1,0 +1,9 @@
+#summary security type missing in ASP
+
+In most cases you can ignore this messages.
+
+TradeLink supports multiple types of securities... eg CL in equities is different than CL in futures.
+
+If you don't specify a type, it will default to equities.   Most brokers do not allow trading in different securities.
+
+In any event, you can ignore this message.

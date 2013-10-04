@@ -1,0 +1,43 @@
+#summary Track and correct overbought and oversold orders.
+
+OversellTracker will automatically adjust [down] any overbought or oversold order.
+
+It can also be configured to split an oversell order into two orders (to avoid fines but still flat and take new position with single order).
+
+example :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+    PositionTracker pt = new PositionTracker();
+    OversellTracker ost;
+    public MyResponse()
+    {
+         // ensure it knows position information
+         ost = new OversellTracker(pt);
+         // set to false to drop oversold portion
+         ost.Split = true;
+         // get notified when this occurs
+         ost.SendDebugEvent+=new DebugDelegate(D);
+         // pickup adjusted orders
+         ost.SendOrderEvent+=new OrderDelegate(base.sendorder);
+    }
+
+    // re-route all orders through tracker
+    override void sendorder(Order o)
+    {
+       ost.sendorder(o);
+    }
+
+    // send orders as normal with protection
+    int size = 300;
+    Random r = new Random();
+    void GotTick(Tick k)
+    {
+       sendorder(new MarketOrder(k.symbol,size));
+       size = Calc.Norm2Min(r.Next(),100) * (size>0 ? -1 
+ : 1)
+    }
+}
+
+}}}

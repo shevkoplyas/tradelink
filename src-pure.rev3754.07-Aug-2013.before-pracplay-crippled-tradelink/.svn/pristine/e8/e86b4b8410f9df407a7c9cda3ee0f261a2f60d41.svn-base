@@ -1,0 +1,49 @@
+#summary How to enable and use bars in responses
+
+TradeLink is tick based, but it provides bars for your convenience.
+
+Here are the steps:
+  # enable bars
+  # use bars after enabling
+
+{{{
+public MyBox : Response
+{
+  // BarLists create and hold all your bars
+  BarList bl = new BarList();
+  
+  void GotTick(Tick tick)
+  {
+    // pass tick through to the bar
+    bl.newTick(tick);
+    
+    // if you don't have a tick, don't use bars yet
+    if (!bl.hasBars) return;
+
+    // use your bars, the rest of this stuff is optional
+     
+    // access most recent bar
+    decimal thisHigh = bl.RecentBar.High;
+    decimal thisVol = bl.RecentBar.Volume;
+    // Look back to older bars
+    // can also use bl[bl.Last-10].Volume
+    int volume10barsback = bl.Get(bl.Last-10).Volume; 
+    // grab other intervals
+    decimal fifteenminHigh2barsback = bl.Get(bl.Last-2,BarInterval.FifteenMin);
+    decimal dayhigh = bl.Get(bl.Last,BarInterval.Day);
+
+    // average the closes
+    decimal sum = 0;
+    foreach (Bar b in bl)
+       sum+= b.Close;
+    decimal avg = sum / bl.Count;
+
+    // you can also quickly pull a year chart from google
+    // you only need to do this once, so don't put it in GotTick,
+    // unless you verify it's run only once
+    if (!bl.Has(2,BarInterval.Day))
+         bl.DayFromGoogle();
+    
+  }
+}
+}}}

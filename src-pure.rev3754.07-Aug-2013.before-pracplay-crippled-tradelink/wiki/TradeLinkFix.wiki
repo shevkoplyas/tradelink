@@ -1,0 +1,12 @@
+#summary TradeLink and FIX
+
+_Does TradeLink work with FIX?_
+
+Yes.  [http://code.google.com/p/tradelink/wiki/ProviderFeatureMatrix  TradeLink supports FIX]
+
+FIX is not a plug and play standard, implementations vary depending on the 
+broker.
+
+You will need to take [http://code.google.com/p/tradelink/source/browse/#svn%2Ftrunk%2FServerFix  the FIX template connector in tradelink] and adapt it to your specific Broker's implementation.
+
+[http://groups.google.com/group/tradelink-users/search?group=tradelink-users&q=fix You may also want to check out the community forum.]

@@ -1,0 +1,44 @@
+#summary Keep track of sent order status
+
+Use Order Tracker to keep track of order status.
+
+You may track :
+ * acknowledged size of order
+ * portion of order which was filled
+ * whether order was canceled
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+   // start tracker
+   OrderTracker ord = new OrderTracker();
+
+   // your custom stuff
+   TickTracker kt = new TickTracker();
+   bool sendordernow = true;
+   IdTracker idt = new IdTracker();
+   public override void GotTick(Tick k)
+   {
+      // your code, eg:
+      kt.newTick(k);
+      if (sendordernow && kt[k.symbol].hasAsk)
+      {
+          sendorder(new BuyLimit(k.symbol,10000,k.ask,idt.AssignId));
+          sendordernow = false;
+      }
+      // check status of your order
+      int remain = ord[idt.NextId-1];
+      if (remain!=0)
+      {
+         D(remain+" shares remain unfilled.");
+      }
+      if (ord.isCanceled(idt.NextId-1))
+         D("order was canceled.");
+   }
+
+   // required to use the tracker
+   public override void GotOrder(Order o) { ord.GotOrder(o); }
+   public override void GotFill(Trade f) { ord.GotFill(f); }
+   public override void GotOrderCancel(long id) { ord.GotCancel(id); }
+}
+}}}

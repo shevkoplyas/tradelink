@@ -1,0 +1,3 @@
+#summary Filter tick files to create a backtest simulation
+
+[http://code.google.com/p/tradelink/source/browse/trunk/Gauntlet/Gauntlet.cs Please see Gauntlet for an example of how to use this component.]

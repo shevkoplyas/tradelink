@@ -1,0 +1,3 @@
+#summary Other tradelink build errors
+
+You will likely experience errors in building code.  [https://code.google.com/p/tradelink/wiki/TradeLinkFaq#First-Time_Problems These are simple to resolve], but [https://code.google.com/p/tradelink/downloads/list if you can't fix the errors just use the installer], it's faster and you can still do 95% of the same things and 99.99% of what most people need to do.

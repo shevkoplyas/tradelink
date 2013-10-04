@@ -1,0 +1,42 @@
+#summary Infer and Track Order Rejections
+
+Use RejectTracker to get reject events and status.
+
+Example :
+
+{{{
+using TradeLink.API;
+using TradeLink.Common;
+
+public class MyResponse : ResponseTemplate 
+{
+   public MyResponse()
+   {
+      // handle reject events
+      rt.SendRejectEvent+=new LongDelegate(newreject);
+      rt.SendCancelEvent+=new LongDelegate(sendcancel);
+   }
+   void newreject(long id)
+   {
+      // take some action on reject (eg notify)
+      D(id+" was rejected.");
+   }
+   override void GotTick(Tick k)
+   {
+         // check for rejects on new ticks
+         rt.newTick(k);
+         // generate some sort of order signal
+         if (k.isTrade && k.hasBid && (k.trade>=k.bid))
+            sendorder(new BuyLimit(k.symbol,100,k.bid+.01));
+   }
+   RejectTracker rt = new RejectTracker();
+   override void sendorder(order o)
+   {
+       rt.sendorder(o);
+       base.sendorder(o);
+   }
+   override void GotOrder(Order o) { rt.GotOrder(o); }
+   override void GotOrderCancel(long id) { rt.GotCancel(id); }
+
+}
+}}}

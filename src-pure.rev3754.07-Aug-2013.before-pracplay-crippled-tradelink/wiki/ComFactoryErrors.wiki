@@ -1,0 +1,20 @@
+#summary Resolving com-factory errors
+
+_COM factory with CLSID {ADFAS0D98...} has failed do to following error:  xxxxxxxx_
+
+If xxxxxxx ends in 'e4' (and sometimes image errors ending in 'c1'), this is usually a security error :
+ 
+ # ensure that you are logged into an account with administrator rights
+ # ensure that UAC is disabled on vista 
+ # ensure you're running program as adminstrator (eg [http://code.google.com/p/tradelink/issues/detail?id=695&can=1&q=admin see bottom of this post])
+ # ensure that any prerequisites have been installed (eg esignal needs to be installed for esignal connector)
+
+if error is 800700c1 "is not a valid Win32 application"
+ # ensure you're running as administrator (eg [http://code.google.com/p/tradelink/issues/detail?id=695&can=1&q=admin see bottom of this post])
+
+if ends in 80040154, usually means it can't find a dll :
+  # [http://code.google.com/p/tradelink/wiki/TradeLinkFaq#Brokers check your broker/feed configuration guide to make sure all necessary software was installed]
+
+
+
+[http://blogs.msdn.com/joshpoley/pages/errors-007-facility-win32.aspx Here is an error reference for com errors]

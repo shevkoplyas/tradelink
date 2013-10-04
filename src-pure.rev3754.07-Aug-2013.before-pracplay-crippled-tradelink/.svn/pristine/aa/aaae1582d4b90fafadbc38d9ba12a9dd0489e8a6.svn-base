@@ -1,0 +1,32 @@
+#summary Using TD Ameritrade with tradelink
+
+<wiki:toc max_depth="3" />
+
+=== Prerequisites ===
+
+ # [http://www.tdameritrade.com/portfolioaccounts/overview.html TD Ameritrade account]
+ # TradeLink
+ # username and password (obtained from broker)
+
+=== Setup ===
+
+ # start TD+BrokerServer from TradeLink programs group (eg start->programs-> tradelink connectors -> td ameritrade).
+ # enter login information, click login.
+ # the app background should turn green on a successful login
+ # if it does not turn green, right click on background and choose messages to see why.
+ # once you have logged in (green), you can start any of the TradeLink apps.
+ # e.g. start Quotopia, enter a symbol to see quotes.
+
+*Note* _TD Ameritrade support is beta._ [EmailUsersGroup Please report any problems you have to tradelink-users@googlegroups.com]
+
+=== Developing or Extending TDServer ===
+
+You can use TD Ameritrade as is with TradeLink without doing anything else.
+
+If you download the TradeLink source code and try to compile the Ameritrade connector, you will receive an error that "AmeritradeBrokerAPI.cs" is missing. This is because if you want to modify the source code, we ask that you sign the TD Ameritrade NDA.
+
+To do this:
+ # Email apidev@tdameritrade.com 
+ # Tell them you develop with TradeLink and want to sign their NDA.   
+ # Once you've signed it, you will be able to obtain the [http://apiforums.tdameritrade.com/ source to the TradeLink TD connector]
+ # This is only necessary if you are modifying the connector. Otherwise you don't need to do this.

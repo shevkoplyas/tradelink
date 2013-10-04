@@ -1,0 +1,21 @@
+#summary Fill handing
+
+Everytime an account tradelink can see gets a fill, you get a notification.
+
+This occurs on full and partial trades, you get notified of whatever was filled.
+
+[ResponsePositions The most common use of this event is to track positions]
+
+Here's another example :
+
+{{{
+// Don't allow open position more than MAXSIZE in any direction
+int MAXSIZE = 1000;
+int size = 0;
+void GotFill(Trade fill)
+{
+  size+= fill.xsize;
+  if (Math.Abs(size)>MAXSIZE)
+    SendOrder(new MarketOrder(fill.symbol,size*-1));
+}
+}}}

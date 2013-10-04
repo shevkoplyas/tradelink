@@ -1,0 +1,159 @@
+#summary Skins provide fast-response startup
+
+Skins are a feature of ASP.
+
+Skins allows you to: 
+  *  pre-load groups of responses in single click
+  *  avoid providing parameters for each response every time
+
+=== Create a skin ===
+
+ # Open ASP
+ # load whatever responses you need
+ # select whatever responses you want to be part of your skin
+ # while selected, right click and choose 'add2skin'
+ # provide a name
+
+Your skin will appear in skin drop-down
+
+=== Use a skin ===
+ 
+ # Open ASP
+ # select your skin from drop-down, say 'yes' to load
+ # your responses should load automatically
+
+=== Remove a skin ===
+
+ # Open ASP
+ # Select your skin from drop-down, say 'no' regarding loading
+ # click the '-' (minus) button next to the skin
+ # say yes to remove
+
+=== Skinning response parameters ===
+
+When skinning responses, ASP will save and restore any public properties of your response.
+
+This can be useful to avoid-reentering the same data.
+
+  # Edit your response source code file
+  # locate fields and properties you wish to be made public
+  # add the 'public' modifier in front of the property or field
+  # if a property is made public, ensure it has both get and set method.
+
+before example :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+   BarInterval _int = BarInterval.FiveMin;
+   BarListTracker _blt = new BarListTracker();
+   public override void GotTick(Tick k)
+   {
+      _blt.newTick(k);
+      if (_blt[k.symbol].RecentBar.Close>Calc.Avg(_blt[k.symbol,_int].Close()))
+          sendorder(new BuyMarket(k.symbol,100));
+
+   }
+}   
+}}}
+
+after example :
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+   // this property will now be saved in skin
+   public BarInterval _int = BarInterval.FiveMin;
+
+   BarListTracker _blt = new BarListTracker();
+   public override void GotTick(Tick k)
+   {
+      _blt.newTick(k);
+      if (_blt[k.symbol].RecentBar.Close>Calc.Avg(_blt[k.symbol,_int].Close()))
+          sendorder(new BuyMarket(k.symbol,100));
+
+   }
+}   
+}}}
+
+_Note that if your response has a GUI, this does not automate choosing options in the GUI._
+
+
+=== Skins at Startup ===
+ 
+You can load a skin automatically at ASP startup.
+
+This can be useful to run a strategy in unattended mode.
+
+ # right click choose create shortcut
+ # browse to tradelink folder)
+ # locate ASP.exe
+ # for shortcut arguments, add full pathname to skin file (ends with .skn)
+ # Skin files are usually located in \users\USERNAME\appdata\local
+
+_Note that if your response has a GUI, this does not automate choosing options in the GUI._
+
+=== Grey versus Black suggestions ===
+
+Often responses have both a user interface and unattended-run abilities.
+
+Here are some suggestions for implementing :
+
+{{{
+public partial class MyResponseGUI : Form
+{
+  MyResponse _eng;
+  public MyResponseGUI(MyResponse mr)
+  {
+     _eng = mr;
+     InitializeComponent();
+  }
+   // called by an event on form
+   void _sym_TextChangedEvent(object sender, EventArgs e)
+   {
+      // GUI updates value on response
+      _eng.Symbols = _sym.Text;
+      // above allows properties to be skinned by ASP
+
+   }
+
+}
+public class MyResponse : ResponseTemplate
+{
+  bool _hasGUI = true;
+  MyResponseGUI _gui;
+  public string Symbols; // save our symbols here
+  public MyResponse() : this(true) {} 
+  public MyResponse(bool hasUI)
+  {
+     _hasGUI = hasUI;
+     if (_hasGUI)
+     {
+        _gui = new MyrepsonseGUI(this);
+        _gui.Show();
+     }
+  }
+  override void Reset()
+  {
+     // subscribe to any pre-defined symbols
+     if (Symbols!=null)
+      _eng.sendbasket(Symbols);
+  }
+}
+// to disable the UI on a response
+public class MyResponseAuto : MyResponse
+{
+  public MyResponseAuto() : base(false) {}
+}
+}}}
+
+Modify the skin file for your UI response to load the Auto response rather than UI response.
+
+MySkin.skn
+------------
+<ResponseDLL>c:\program files\MyResponse\MyResponse.dll</responseDll>
+<Response>MyResponse</response>
+
+Change to read :
+<ResponseDLL>c:\program files\MyResponse\MyResponse.dll</responseDll>
+<Response>MyResponseAuto</response>

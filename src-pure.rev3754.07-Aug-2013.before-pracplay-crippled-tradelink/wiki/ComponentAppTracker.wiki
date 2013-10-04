@@ -1,0 +1,20 @@
+#summary Track Application usage
+
+This allows you to transparently report usage of your applications to a webserver, for statistics and report generation.   Requires internet access.
+
+{{{
+public partial class MyFormApp : AppTracker
+{
+ public const string PROGRAM = "MyFormApp";
+ public MyFormApp()
+ {
+      // report stats here if tracking enabled
+      // this url should handle post requests (eg just log them to a file)
+      TrackURL = "http://mysite.com/apptracking";
+      // see whether user has consented to application tracking (eg on install)
+      TrackEnabled = Util.TrackUsage(PROGRAM);
+      // report stats for this program
+      Program = PROGRAM;
+ }
+}
+}}}

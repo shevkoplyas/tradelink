@@ -1,0 +1,82 @@
+#summary How to shutdown a response
+
+To shutdown a response :
+  # Find the isValid property on your response
+  # change it from true to use a variable instead
+  # Set default value of variable to true
+  # when desired, change value of variable to false
+  # for safety, you may also want to check isValid yourself
+
+We'll take the empty response.  <br/>
+We desire to shutdown when the first tick arrives.<br/>
+here's what we're starting with:
+{{{
+    // you can copy+paste this to get a working response w/o all the comments
+    public class EmptyResponseTemplate : Response
+    {
+        public void GotTick(Tick tick)
+        {
+        }
+        public void GotOrder(Order order)
+        {
+        }
+        public void GotFill(Trade fill)
+        {
+        }
+        public void GotOrderCancel(uint cancelid)
+        {
+        }
+        public void Reset() { }
+        public void GotPosition(Position p) { }
+        public bool isValid { get { return true; } }
+        public string[] Indicators { get { return new string[0]; } set { } }
+        public string Name { get { return ""; } set { } }
+        public string FullName { get { return ""; } set { } }
+        public event DebugFullDelegate SendDebug;
+        public event OrderDelegate SendOrder;
+        public event UIntDelegate SendCancel;
+        public event ObjectArrayDelegate SendIndicators;
+    }
+}}}
+
+Here's our end product:
+{{{
+    // you can copy+paste this to get a working response w/o all the comments
+    public class EmptyResponseTemplate : Response
+    {
+        public void GotTick(Tick tick)
+        {
+           // to be safe, we see if we're valid before we do anything
+           if (!isValid) return;
+         
+           // then if we're not valid, we desire to shutdown by becoming invalid
+           valid = false;
+        }
+        public void GotOrder(Order order)
+        {
+        }
+        public void GotFill(Trade fill)
+        {
+        }
+        public void GotOrderCancel(uint cancelid)
+        {
+        }
+        public void Reset() { }
+        public void GotPosition(Position p) { }
+        // we found isValid property here
+        // we created a variable, set it to default to true
+        bool valid = true;
+        // then we changed isValid to use it
+        public bool isValid { get { return valid; } }
+        public string[] Indicators { get { return new string[0]; } set { } }
+        public string Name { get { return ""; } set { } }
+        public string FullName { get { return ""; } set { } }
+        public event DebugFullDelegate SendDebug;
+        public event OrderDelegate SendOrder;
+        public event UIntDelegate SendCancel;
+        public event ObjectArrayDelegate SendIndicators;
+    }
+}}}
+
+
+

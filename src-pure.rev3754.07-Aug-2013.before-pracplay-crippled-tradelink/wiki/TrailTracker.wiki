@@ -1,0 +1,64 @@
+#summary Simulated Trailing stops with TrailTracker
+
+Not all brokers support trailing stops.  
+
+TrailTracker lets you support this functionality across many brokers.
+
+<wiki:toc/>
+
+=== Basics ===
+
+Here is an example
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  public override GotTick(Tick k)
+  {
+      // offsettracker uses ticks as an extra heartbeat
+      tt.newTick(k);
+  }
+  public override GotPosition(Position p)
+  {
+    tt.Adjust(p);
+  } 
+  public override GotFill(Trade fill)
+  {
+     tt.Adjust(fill);
+   }
+  // create offset tracker
+  TrailTracker tt = new TrailTracker();
+  public MyResponse()
+  {
+     // 10cent trailing stop (profit distance is ignored on trailtrakcer)
+     tt.DefaultOffset = new OffsetInfo(0,.1m);
+     // set a different trailing stop for a specific position
+     tt["IBM"].StopDist = .25m;
+     //disable trailing stops on another symbol
+     tt["GE"].StopPercent = 0;
+
+     // tell offset tracker where to send orders, cancels and debugging ifnormation
+     tt.SendOrder+=new OrderDelegate(sendorder);
+     tt.SendCancel+= new UintDelegate(sendcancel);
+     tt.SendDebug+=new DebugDelegate(senddebug);
+  }
+}
+}}}
+
+
+=== Exponential Trailing ===
+
+Trail tracker allows you to apply a trail rule continuously a specified number of times.   
+
+This allows you to reduce your position in expotential fashion, a given number of times.
+
+To do this, simply set the MaxTrailCount property on the trail tracker to the maximum number of trails you need applied.   It defaults to 1.
+
+{{{
+
+// with a 1000 share position and a 50% trail pct, 
+// a max count of 3 will allow your position to step downward at each trail :
+// 1000 -> 500 -> 250 (trail stops being enforced)
+tt.MaxTrailCount = 3;
+
+}}}

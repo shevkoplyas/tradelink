@@ -1,0 +1,14 @@
+#summary keep track of highs and lows for many symbols
+
+{{{
+public class MyResponse : ResponseTemplate
+{
+  HighLowTracker _hlt = new HighLowTracker();
+  public override void GotTick(Tick k)
+  {
+    // if new high or low is made, print them
+    if (_hlt.newTick(k))
+       debug(_hlt.High(k.symbol)+" "+_hlt.Low(k.symbol));
+  }
+}
+}}}

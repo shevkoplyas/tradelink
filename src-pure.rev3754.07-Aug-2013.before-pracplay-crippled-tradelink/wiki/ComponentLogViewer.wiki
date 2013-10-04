@@ -1,0 +1,23 @@
+#summary Filter log files in TradeLink
+
+Purposes :
+ * Filter log files by program name
+ * Allow them to be viewed
+ * Submit log files as assembla tickets
+ * Remove log files
+
+Using Control:
+ * drag and drop to any windows form
+
+Using Window:
+ * create instance
+ * hide/show to user using Toggle()
+
+{{{
+
+// display log files for PROGRAM
+LogViewer lv = new LogViewer("MyProgram");
+// show to user
+lv.Toggle();
+
+}}}

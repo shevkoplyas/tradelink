@@ -1,0 +1,42 @@
+#summary Create tickets on assembla.com
+
+{{{
+using TradeLink.AppKit;
+using Microsoft.VisualBasic.Interaction;
+
+public partial class MyProgram : Form
+{
+ public const string PROGRAM = "MyProgram";
+ Log _log = new Log(PROGRAM);
+
+ public MyProgram()
+ {
+    FormClosing+=new EventHandler(closing);
+ }
+ 
+
+ void debug(string msg)
+ {
+    // log program background information to file
+    _log.GotDebug(msg); 
+ }
+
+ void button1_click(object sender, EventArgs e)
+ {
+    // popup description of problem
+    string desc = Input("What is the issue you want to report?","",0,0);
+    // open a ticket and automatically attach program log
+    AssemblaTicket.CreateTicket("myproject","myusername","mypassword",desc, _log.Content);
+
+ }
+
+ void  closing(object sender, EventArgs e)
+ {
+    // close log when program closes
+    _log.Stop();
+ }
+
+
+}
+}}}
+

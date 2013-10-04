@@ -1,0 +1,11 @@
+#summary Problems starting connectors (BrokerServer) or using TradeLibFast.dll
+
+Common Errors Include
+ * "Specified Module Not Found"
+ * "Application Configuration Incorrect"
+ * "Side-by-side configuration does not match" (on 64bit platforms)
+ * "application failed to start because its side-by-side configuration is incorrect" (on 64-bit platforms)
+
+Try all or any of the following:
+  * Install this [http://tradelink.googlecode.com/files/vcredist_x86.20110514.exe Microsoft Visual C++ 2005 Redistributable]
+  * Uninstall any existing Microsoft Visual C++ Redistributable in _Control Panel_ -> _Add/Remove Programs_ (_Programs and Features_ on Vista), then install this [http://tradelink.googlecode.com/files/vcredist_x86.20110514.exe Microsoft Visual C++ Redistributable]

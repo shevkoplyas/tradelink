@@ -1,0 +1,21 @@
+#summary Esignal use in TradeLink
+
+=== Requirements ===
+
+ * eSignal subscription
+ * eSignal Pro installed
+ * eSignal API entitlement purchased from eSignal (seperate esignal fees)
+
+=== Steps ===
+
+ # Start esignalserver connector from Start->TradeLink
+ # enter your esignal entitlement login information
+ # click login
+ # start a tradelink client (eg quotopia,ASP, record)
+ # it should automatically connect to the esignal connector
+ # you should be able to get quotes
+
+=== Notes ===
+
+ * If you have all the requirements but still get a red login, ensure you are running as administrator
+ * eSignal connector can only be used to get quotes, can't submit orders or do executions.

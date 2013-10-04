@@ -1,0 +1,9 @@
+#summary Sends a custom message to TradeLink - BETA
+
+This is a feature that allows to to do broker-specific things.
+
+You should be careful with this feature, because it may make your response non-portable between brokers.
+
+Responses to SendMessage commands come via GotMessage.
+
+[BookTracker See book tracker component for an example of using this command]

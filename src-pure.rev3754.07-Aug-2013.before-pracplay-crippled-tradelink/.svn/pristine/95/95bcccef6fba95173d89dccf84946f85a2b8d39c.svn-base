@@ -1,0 +1,30 @@
+#summary How to modify one of the example responses (or another response you have)
+
+Pretty simple. Steps:
+
+ # [CsharpIde download an ide] (we recommend visual 2008 express)
+ # start your ide, file->open and browse to the project (response.csproj) or solution file (solution.sln) included in your project
+ # you will see the source code and all the files included in your project
+ # find the file containing the name of the response you wish to modify (generally file has same name as the response)
+ # make whatever changes are necessary
+ # file-> save to save changes
+ # click the 'build' button (or choose build from the build menu) to build the project.
+ # this will create a new DLL file with your changes (usually inside of your project folder bin\Release\response.dll)
+ # you can then import the dll into any of the tradelink programs as before
+
+Example 'change default bar interval on SMA response'
+ # open IDE
+ # start->programs->tradelink->Response examples
+ # find SMAResponse.cs
+ # open it
+ # find the place where the default bar internal is set and change it, eg:
+{{{
+// starts like this
+        BarInterval _barinterval = BarInterval.FiveMin;
+// change to whatever you desire
+        BarInterval _barinterval = BarInterval.Hour;
+}}}
+
+Then click save and build, and move the responses.dll wherever you want to use it.  
+
+the next time you open SMAResponse from this dll, it will have the new default value.
