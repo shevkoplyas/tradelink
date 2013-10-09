@@ -10,12 +10,13 @@ Tradelink
 
        File: src-pure.rev3754.07-Aug-2013.before-pracplay-crippled-tradelink
 Description: Tradelink svn revision 3754 which was committed on 07-Aug-2013
-             On 18-Sep-2013 whole svn repo was "flattened" (no more history available) and 
-             commiter Joshua Franta put the following comment: "removing sensitive 
+             On 18-Sep-2013 whole svn repo was "flattened" (no more history available) 
+	     and commiter Joshua Franta put the following comment: "removing sensitive 
 	     passwords/sensitive info", but PracPlay also deleted ASP, Kadina, Quotopia.
-	     They basically crippled the whole idea of free open source Tradelink without anouncing 
-	     their plans. They could do this in some more community friendly way, but was done is done.
-             Anyways - they have created this brillian project, so it is up to them what to do with it. 
+	     They basically crippled the whole idea of free open source Tradelink 
+	     without anouncing their plans. They could do this in some more community
+	     friendly way, but was done is done. Anyways - they have created this 
+	     brillian project, so it is up to them what to do with it. 
 	     No complains.
 	     This latest revision r3754 still has ASP, Kadina, Quotopia etc. 
 	     It also has "trunc" along with some recent development brunches.
