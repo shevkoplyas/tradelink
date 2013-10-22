@@ -28,7 +28,11 @@ Description: a bit more details on the recent history of Tradelink development.
              Thank you Josh, that was titanic effort!
 
        File: tradelink.documentation.generated-by-doxygen
-Description: quite old, but gives an idea of the classes layout, function description etc.
+Description: quite old (generated in Apr 21 17:35:03 2009), but gives an idea of the 
+             classes layout, function description etc.
+
+       File: tradelink.documentation.generated-by-doxygen.latest-r3754.tgz  (LATEST!)
+Description: Huray! The latest docs generated using doxygen + revision 3754!
 
        File: tradelink.wiki.historical.raw.7z
 Description: this was collected by pieces, less technical, more newbie-friendly way
